@@ -294,6 +294,23 @@
 }
 
 
+/* BARRE DYNAMIQUE HORIZONTALE */
+.scroll-indicator-horiz-container {
+    width: 80px; height: 2px;
+    background: rgba(212, 175, 55, 0.2);
+    position: relative; overflow: hidden;
+    border-radius: 2px;
+}
+.scroll-indicator-horiz-bar {
+    height: 100%; width: 30%;
+    background: linear-gradient(to right, transparent, #fff, #d4af37, transparent);
+    position: absolute; left: 0;
+    animation: scrollMoveHoriz 2.5s ease-in-out infinite;
+}
+@keyframes scrollMoveHoriz {
+    0% { left: -30%; } 50% { left: 70%; } 100% { left: -30%; }
+}
+
     </style>
 </head>
 <body>
@@ -371,7 +388,7 @@
         <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
             <div class="relative group">
                 <div class="absolute -inset-4 bg-gold-luxe opacity-20 blur-xl rounded-full"></div>
-                <img src="https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreibzrukgwjeidfj7g3scsy3rxmzsx6nqldc5hd55gjoxr3beyg2gsy" 
+                <img src="https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreiehibo4d2zrdlulqk7mjkmfwfrfqkpu34s56p77sj65ippgw3avra" 
                     alt="Mains de couturière" 
                     class="relative w-full h-[500px] object-contain bg-[#faf9f6] rounded-t-[10rem] rounded-b-[2rem] shadow-2xl border-4 border-white z-10">
                 <div class="absolute bottom-10 -right-5 bg-white p-6 shadow-2xl rounded-full z-20 text-center w-32 h-32 flex flex-col justify-center border border-[#d4af37]/30">
@@ -398,6 +415,95 @@
     </section>
 
     <div class="section-divider"></div>
+
+    <!-- SECTION PROCESSUS CRÉATIF -->
+<section id="processus" class="py-24 bg-[#fcfbf9] overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="flex flex-col md:flex-row items-center gap-16">
+            
+            <!-- Texte Explicatif (Gauche) -->
+            <div class="w-full md:w-1/2 space-y-6">
+                <span class="font-amour text-4xl gold-static">De l'esquisse à la soie</span>
+                <h2 class="font-luxe text-4xl md:text-5xl text-[#2c2c2c] leading-tight">
+                    Le Processus <br> <span class="gold-text">Créatif</span>
+                </h2>
+                <div class="w-20 h-1 bg-gold-luxe mb-8"></div>
+                
+                <p class="text-gray-600 leading-relaxed text-justify">
+                    Chaque robe commence par une émotion, tracée à la mine de plomb. Qu'il s'agisse d'une <strong>création pure</strong> ou d'une <strong>transformation radicale</strong>, mon processus reste fidèle à la haute couture :
+                </p>
+                
+                <div class="space-y-4 pt-4">
+                    <div class="flex gap-4">
+                        <span class="font-luxe gold-static text-2xl">01.</span>
+                        <div>
+                            <h4 class="font-bold uppercase text-xs tracking-widest text-[#2c2c2c]">L'Étude & Le Croquis</h4>
+                            <p class="text-sm text-gray-500">Analyse de votre morphologie et dessin technique pour visualiser les volumes et les dentelles.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <span class="font-luxe gold-static text-2xl">02.</span>
+                        <div>
+                            <h4 class="font-bold uppercase text-xs tracking-widest text-[#2c2c2c]">Le Moulage & La Coupe</h4>
+                            <p class="text-sm text-gray-500">Travail direct sur mannequin pour sculpter la matière et assurer un tombé impeccable.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <span class="font-luxe gold-static text-2xl">03.</span>
+                        <div>
+                            <h4 class="font-bold uppercase text-xs tracking-widest text-[#2c2c2c]">La Révélation</h4>
+                            <p class="text-sm text-gray-500">Finitions main, pose de perles ou ajustement de traîne pour le jour J.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Carrousel Avant/Après (Droite) -->
+            <div class="w-full md:w-1/2 relative">
+                
+                <!-- Cadre Photo -->
+                <div class="relative h-[600px] w-full rounded-sm overflow-hidden shadow-2xl border-[12px] border-white">
+                    
+                    <!-- Groupe 1 -->
+                    <div class="process-slide active opacity-100 transition-opacity duration-1000 absolute inset-0">
+                        <img src="https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreidpyfwkocnqnivzy67anxogq3opuke4ba5zetgnfifdlcvbqvh7fy" class="w-full h-full object-cover" alt="Croquis 1">
+                        <div class="absolute bottom-6 left-6 bg-black/60 text-white px-4 py-1 text-[10px] uppercase tracking-widest backdrop-blur-sm border-l-2 border-[#d4af37]">Avant : Le Croquis</div>
+                    </div>
+                    <div class="process-slide opacity-0 transition-opacity duration-1000 absolute inset-0">
+                        <img src="https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreiarapijcrjftiw4bkutyffw6vnimz77wryacp4q53wjo5gbuse2ge" class="w-full h-full object-cover" alt="Robe Réelle 1">
+                        <div class="absolute bottom-6 left-6 bg-gold-luxe text-black px-4 py-1 text-[10px] uppercase font-bold tracking-widest shadow-lg">Après : La Réalisation</div>
+                    </div>
+
+                    <!-- Groupe 2 -->
+                    <div class="process-slide opacity-0 transition-opacity duration-1000 absolute inset-0">
+                        <img src="https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreiaqyln3f655qqisw66csnrhc3pibataeko3fbzwz536n5lswjod7a" class="w-full h-full object-cover" alt="Croquis 2">
+                        <div class="absolute bottom-6 left-6 bg-black/60 text-white px-4 py-1 text-[10px] uppercase tracking-widest backdrop-blur-sm border-l-2 border-[#d4af37]">Avant : Le Croquis</div>
+                    </div>
+                    <div class="process-slide opacity-0 transition-opacity duration-1000 absolute inset-0">
+                        <img src="https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreigdiy6z2uvxcdqlunncl6ta76qxsfw4mnqxgiatygaju5in3sklpq" class="w-full h-full object-cover" alt="Robe Réelle 2">
+                        <div class="absolute bottom-6 left-6 bg-gold-luxe text-black px-4 py-1 text-[10px] uppercase font-bold tracking-widest shadow-lg">Après : La Réalisation</div>
+                    </div>
+                </div>
+
+                <!-- NAVIGATION HORIZONTALE AVEC BARRE -->
+                <div class="absolute -bottom-12 right-0 flex items-center gap-6">
+                    <button onclick="prevProcess()" class="nav-arrow-btn" aria-label="Précédent">
+                        <i data-feather="chevron-left"></i>
+                    </button>
+                    
+                    <div class="scroll-indicator-horiz-container">
+                        <div class="scroll-indicator-horiz-bar"></div>
+                    </div>
+                    
+                    <button onclick="nextProcess()" class="nav-arrow-btn" aria-label="Suivant">
+                        <i data-feather="chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
 
     <!-- SERVICES -->
     <section id="collection" class="py-12 px-6">
@@ -564,6 +670,36 @@
             menu.classList.toggle('open');
             document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : 'auto';
         }
+
+
+
+        // LOGIC POUR LE CARROUSEL PROCESSUS (AVANT/APRÈS)
+        const processSlides = document.querySelectorAll('.process-slide');
+        let processIdx = 0;
+
+        function showProcessSlide(index) {
+            processSlides.forEach(slide => {
+                slide.style.opacity = '0';
+                slide.classList.remove('active');
+            });
+            processSlides[index].style.opacity = '1';
+            processSlides[index].classList.add('active');
+        }
+
+        function nextProcess() {
+            processIdx = (processIdx + 1) % processSlides.length;
+            showProcessSlide(processIdx);
+        }
+
+        function prevProcess() {
+            processIdx = (processIdx - 1 + processSlides.length) % processSlides.length;
+            showProcessSlide(processIdx);
+        }
+
+        // Optionnel : change automatiquement toutes les 4 secondes
+        setInterval(nextProcess, 4000);
     </script>
+
+    
 </body>
 </html>
