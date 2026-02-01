@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Galerie des Merveilles | L'Univers de la Mariée</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <style>
+        /* --- IMPORT IDENTIQUE AU SITE PRINCIPAL --- */
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&family=Pinyon+Script&display=swap');
+        
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            background-color: #faf9f6; 
+            color: #4a4a4a; 
+            overflow-x: hidden;
+            margin: 0; padding: 0;
+        }
+
+        h1, h2, h3, .font-luxe { font-family: 'Cinzel', serif; }
+        .font-amour { font-family: 'Pinyon Script', cursive; }
+
+        /* TEXTE OR (Identique) */
+        .gold-text { 
+            background: linear-gradient(90deg, #8a6628, #dfb857, #fff9d1, #dfb857, #8a6628); 
+            background-size: 200% auto;
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            animation: shine 4s linear infinite;
+        }
+        .gold-static {
+            background: linear-gradient(135deg, #8a6628, #f6e27a, #8a6628);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .bg-gold-luxe {
+            background: linear-gradient(135deg, #b8860b, #f6e27a, #d4af37);
+            color: #000;
+        }
+        @keyframes shine { to { background-position: 200% center; } }
+
+        /* --- STYLES SPÉCIFIQUES VITRINE INNOVANTE --- */
+
+        /* 1. FILTRES FLOTTANTS GLASSMORPHISM */
+        .filter-bar {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 50px;
+            padding: 10px 30px;
+            display: inline-flex;
+            gap: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        .filter-btn {
+            font-family: 'Cinzel', serif;
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            color: #4a4a4a;
+            cursor: pointer;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.4s ease;
+            position: relative;
+            background: transparent;
+            border: none;
+        }
+        .filter-btn.active, .filter-btn:hover {
+            color: #b8860b;
+            background: rgba(212, 175, 55, 0.1);
+        }
+        /* Petit point or sous le filtre actif */
+        .filter-btn.active::after {
+            content: '✦';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #d4af37;
+            font-size: 10px;
+        }
+
+        /* 2. GRILLE MASONRY (MOSAÏQUE) */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            grid-auto-rows: 20px; /* Unité de base pour la hauteur */
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 4px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            opacity: 0; /* Pour l'animation d'apparition */
+            transform: translateY(30px);
+        }
+        
+        .gallery-item.visible { opacity: 1; transform: translateY(0); }
+
+        /* Gestion des tailles (Portrait vs Paysage) */
+        .gallery-item.tall { grid-row-end: span 22; } /* Image haute */
+        .gallery-item.normal { grid-row-end: span 14; } /* Image standard */
+        .gallery-item.wide { grid-column-end: span 2; grid-row-end: span 16; } /* Image large */
+
+        .gallery-img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 1.2s ease;
+        }
+
+        /* 3. EFFET SURVOL "LOUPE DE LUXE" */
+        .overlay-info {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%);
+            opacity: 0;
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 30px;
+        }
+        
+        .gallery-item:hover .overlay-info { opacity: 1; }
+        .gallery-item:hover .gallery-img { transform: scale(1.05); }
+
+        /* Badge État (Dispo / Vendu) */
+        .badge-status {
+            position: absolute; top: 20px; right: 20px;
+            background: rgba(255,255,255,0.9);
+            padding: 5px 12px;
+            font-size: 0.7rem;
+            font-family: 'Cinzel', serif;
+            letter-spacing: 1px;
+            border: 1px solid #d4af37;
+            color: #000;
+            z-index: 10;
+        }
+
+        /* 4. MODAL IMMERSIVE (Fiche Histoire) */
+        #product-modal {
+            position: fixed; inset: 0;
+            background: rgba(250, 249, 246, 0.98);
+            z-index: 200;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            overflow-y: auto;
+        }
+        #product-modal.open { display: block; opacity: 1; }
+        
+        .modal-content-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            min-height: 100vh;
+        }
+        @media (max-width: 768px) {
+            .modal-content-grid { grid-template-columns: 1fr; }
+        }
+
+        .close-modal-btn {
+            position: fixed; top: 30px; right: 30px;
+            z-index: 210;
+            font-size: 2rem;
+            color: #d4af37;
+            background: white;
+            width: 60px; height: 60px;
+            border-radius: 50%;
+            border: 1px solid #d4af37;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .close-modal-btn:hover { transform: rotate(90deg); background: #d4af37; color: white; }
+
+        /* NAVIGATION BAS DE PAGE */
+        .nav-back-home {
+            position: fixed; bottom: 30px; left: 30px; z-index: 50;
+            background: white; padding: 10px 20px; border-radius: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            font-family: 'Cinzel', serif; font-size: 0.8rem;
+            display: flex; align-items: center; gap: 10px;
+            border: 1px solid #eee;
+            transition: all 0.3s;
+        }
+        .nav-back-home:hover { border-color: #d4af37; color: #b8860b; }
+
+
+        /* --- AJOUTER CECI DANS LE CSS DE LA VITRINE --- */
+        .btn-luxe-hero { 
+            background: rgba(20, 20, 20, 0.9); 
+            color: #f6e27a; 
+            border: 1px solid #d4af37;
+            transition: all 0.4s ease; 
+        }
+        .btn-luxe-hero:hover { 
+            background: linear-gradient(135deg, #b8860b, #f6e27a, #b8860b); 
+            color: #000;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- BOUTON RETOUR SITE PRINCIPAL -->
+    <a href="index.html" class="nav-back-home">
+        <i data-feather="arrow-left" style="width:16px;"></i> Accueil
+    </a>
+
+    <!-- NAV BAR SIMPLIFIÉE (Pour rester dans l'univers) -->
+    <nav class="fixed top-0 w-full z-40 flex justify-center py-6 pointer-events-none">
+        <div class="pointer-events-auto filter-bar">
+            <button class="filter-btn active" onclick="filterGallery('all')">Tout voir</button>
+            <button class="filter-btn" onclick="filterGallery('boheme')">Bohème</button>
+            <button class="filter-btn" onclick="filterGallery('princesse')">Princesse</button>
+            <button class="filter-btn" onclick="filterGallery('vintage')">Vintage & Upcycling</button>
+            <button class="filter-btn" onclick="filterGallery('accessoires')">Voiles & Détails</button>
+        </div>
+    </nav>
+
+    <!-- HEADER MINIMALISTE -->
+    <header class="pt-40 pb-20 text-center px-6">
+        <h1 class="font-amour text-5xl md:text-7xl gold-static mb-4">L'Écrin des Créations</h1>
+        <p class="font-luxe text-gray-500 uppercase tracking-widest text-xs md:text-sm max-w-xl mx-auto leading-relaxed">
+            Chaque robe a une âme. Ici, nous ne vendons pas simplement du tissu, <br>nous présentons des histoires de soie et de dentelle en attente d'un nouveau chapitre.
+        </p>
+    </header>
+
+    <!-- GALERIE MASONRY -->
+<section class="max-w-[1600px] mx-auto px-6 mb-24">
+    <div class="gallery-grid" id="gallery-container">
+        
+        <!-- ITEM 1 : DOS NU (WIDE) -->
+        <div class="gallery-item wide group" data-category="vintage" onclick="openModal('item4')">
+            <div class="badge-status">Vendue</div>
+            <img src="https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreihp3jmnpm4wzupxc5r2mnimrotmjvpy6pdjnq6y25hjpgrmy6qxhq" class="gallery-img" alt="Dos nu">
+            <div class="overlay-info">
+                <span class="font-amour text-3xl text-[#f6e27a] mb-1">Dos Nu Perlé</span>
+                <h3 class="font-luxe text-white uppercase text-lg tracking-widest border-b border-[#d4af37] pb-2 mb-2 w-max">Cymbeline</h3>
+            </div>
+        </div>
+
+        <!-- ITEM 2 : HÉRITAGE (NORMAL) -->
+        <div class="gallery-item normal group" data-category="vintage" onclick="openModal('item2')">
+            <div class="badge-status">Transformée</div>
+            <img src="https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreigwsj55ni6jhp4ybynsrp3ysliet7s2z2iuq26ycm36h5ldt27zhi" class="gallery-img" alt="Détail Dentelle">
+            <div class="overlay-info">
+                <span class="font-amour text-3xl text-[#f6e27a] mb-1">L'Héritage</span>
+                <h3 class="font-luxe text-white uppercase text-lg tracking-widest border-b border-[#d4af37] pb-2 mb-2 w-max">Restauration 1980</h3>
+            </div>
+        </div>
+
+        <!-- ITEM 3 : ESPRIT SAUVAGE (TALL) -->
+        <a href="index.html#atelier" class="gallery-item tall group" data-category="accessoires">
+            <div class="badge-status">À l'Atelier</div>
+            <img src="https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreiejikcft5pyblouh46zyp62erop5o3ewuh4zml3ahqehgb4c4a2fa" class="gallery-img" alt="Robe Bohème">
+            <div class="overlay-info">
+                <span class="font-amour text-3xl text-[#f6e27a] mb-1">Esprit Sauvage</span>
+                <h3 class="font-luxe text-white uppercase text-lg tracking-widest border-b border-[#d4af37] pb-2 mb-2 w-max">
+                    Découvrir la Confection
+                </h3>
+            </div>
+        </a>
+
+        <!-- ITEM 4 : LA MAJESTUEUSE (TALL - A LA PLACE DU VOILE) -->
+        <div class="gallery-item normal group" data-category="princesse" onclick="openModal('item1')">
+            <div class="badge-status">Disponible</div>
+            <img src="https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreibxu4vwq3ji433w7gqoifcmqxqkptyhtvvess22s5jfqqsdkxokju" class="gallery-img" alt="Robe Princesse">
+            <div class="overlay-info">
+                <span class="font-amour text-3xl text-[#f6e27a] mb-1">La Majestueuse</span>
+                <h3 class="font-luxe text-white uppercase text-lg tracking-widest border-b border-[#d4af37] pb-2 mb-2 w-max">Pronovias • 2022</h3>
+                <p class="text-gray-300 text-xs italic">Cliquez pour découvrir son histoire...</p>
+            </div>
+        </div>
+
+        <!-- ITEM 5 : VOILE CATHÉDRALE (NORMAL - ENSUITE) -->
+        <div class="gallery-item wide group" data-category="boheme" onclick="openModal('item6')">
+            <div class="badge-status">Disponible</div>
+            <img src="https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreidpbj5cexek4t6qhn5pbai7rgsxnoalozkbt2hpj6u24kqczlpdqq" class="gallery-img" alt="Dentelle">
+            <div class="overlay-info">
+                <span class="font-amour text-3xl text-[#f6e27a] mb-1">Mousseline de Soie</span>
+                <h3 class="font-luxe text-white uppercase text-lg tracking-widest border-b border-[#d4af37] pb-2 mb-2 w-max">Fluidité & Légèreté</h3>
+            </div>
+        </div>
+
+        <!-- ITEM 6 : MOUSSELINE (WIDE - A DROITE) -->
+         <div class="gallery-item normal group" data-category="accessoires" onclick="openModal('item5')">
+            <div class="badge-status">Disponible</div>
+            <img src="https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreidnmixh5bfb2h6ym4thfuvpqwltbyfeiovkl5q6mu6hmnmzui2gq4" class="gallery-img" alt="Voile">
+            <div class="overlay-info">
+                <span class="font-amour text-3xl text-[#f6e27a] mb-1">Voile Cathédrale</span>
+                <h3 class="font-luxe text-white uppercase text-lg tracking-widest border-b border-[#d4af37] pb-2 mb-2 w-max">3 mètres de dentelle</h3>
+            </div>
+        </div>
+
+
+        
+
+        <!-- ITEM 7 : AJOUT/SUITE -->
+        <div class="gallery-item normal group" data-category="princesse" onclick="openModal('item7')">
+            <div class="badge-status">Disponible</div>
+            <img src="https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreihtocbo7yqq3d4sjj6o524qikmctnp36kq43roihr5hkvwx7mxjzi" class="gallery-img" alt="Description">
+            <div class="overlay-info">
+                <span class="font-amour text-3xl text-[#f6e27a] mb-1">Nom de la robe</span>
+                <h3 class="font-luxe text-white uppercase text-lg tracking-widest border-b border-[#d4af37] pb-2 mb-2 w-max">Marque • Année</h3>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="text-center mt-20">
+        <p class="font-luxe text-gray-400 text-xs uppercase tracking-[0.2em] mb-4">Vous ne trouvez pas votre bonheur ?</p>
+        
+        <!-- Le bouton utilise maintenant la classe btn-luxe-hero définie plus haut -->
+        <a href="index.html#contact" class="inline-block btn-luxe-hero px-10 py-4 rounded-sm uppercase tracking-widest font-bold shadow-lg">
+            Confiez-moi votre recherche
+        </a>
+    </div>
+</section>
+
+    <!-- 5. MODAL "HISTOIRE DE LA ROBE" (Caché par défaut) -->
+    <div id="product-modal">
+        <button class="close-modal-btn" onclick="closeModal()">&times;</button>
+        
+        <div class="modal-content-grid">
+            <!-- GAUCHE : VISUEL IMMERSIF -->
+            <div class="bg-gray-100 relative h-[50vh] md:h-full">
+                <img id="modal-img" src="" class="w-full h-full object-cover" alt="Detail Robe">
+                <div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-black/50 to-transparent"></div>
+            </div>
+
+            <!-- DROITE : CONTENU STORYTELLING -->
+            <div class="p-10 md:p-20 flex flex-col justify-center bg-[#faf9f6]">
+                <div class="mb-6">
+                    <span id="modal-badge" class="bg-[#d4af37] text-white px-3 py-1 text-[10px] uppercase tracking-widest font-bold rounded-sm">Disponible</span>
+                </div>
+                
+                <h2 id="modal-title" class="font-amour text-6xl md:text-7xl gold-static mb-2 leading-none">Titre Robe</h2>
+                <h3 id="modal-subtitle" class="font-luxe text-xl uppercase tracking-[0.2em] text-gray-800 mb-8 border-b border-gray-300 pb-4">Marque & Année</h3>
+
+                <p id="modal-desc" class="text-gray-600 leading-loose mb-10 font-light text-justify">
+                    Description...
+                </p>
+
+                <div class="grid grid-cols-2 gap-6 mb-12">
+                    <div>
+                        <span class="block text-xs uppercase text-[#d4af37] font-bold tracking-widest mb-1">Matière</span>
+                        <span id="modal-fabric" class="font-luxe text-lg">Dentelle de Calais</span>
+                    </div>
+                    <div>
+                        <span class="block text-xs uppercase text-[#d4af37] font-bold tracking-widest mb-1">Taille</span>
+                        <span id="modal-size" class="font-luxe text-lg">38 (Ajustable 36/40)</span>
+                    </div>
+                    <div>
+                        <span class="block text-xs uppercase text-[#d4af37] font-bold tracking-widest mb-1">État</span>
+                        <span id="modal-condition" class="font-luxe text-lg">Comme neuve</span>
+                    </div>
+                    <div>
+                        <span class="block text-xs uppercase text-[#d4af37] font-bold tracking-widest mb-1">Prix Vitrine</span>
+                        <span id="modal-price" class="font-luxe text-lg">850€</span>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <a href="https://wa.me/33613342900" target="_blank" class="block w-full text-center py-4 bg-[#1a1a1a] text-[#f6e27a] uppercase tracking-widest font-bold text-sm hover:bg-gold-luxe hover:text-black transition shadow-lg">
+                        Je suis intéressée
+                    </a>
+                    <p class="text-center text-[10px] text-gray-400 uppercase tracking-widest">Essayage privé sur rendez-vous uniquement</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        feather.replace();
+
+        // --- DONNÉES SIMULÉES (DATA STORE) ---
+        // --- DONNÉES SIMULÉES (DATA STORE) ---
+        const products = {
+            // ITEM 1 : LA MAJESTUEUSE (C'est bien l'ID item1 dans ton HTML, même s'il est placé plus bas)
+            'item1': {
+                title: "La Majestueuse",
+                subtitle: "Pronovias • Collection Privée",
+                // J'ai mis le lien de la robe Princesse ici
+                img: "https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreibxu4vwq3ji433w7gqoifcmqxqkptyhtvvess22s5jfqqsdkxokju",
+                desc: "Une pièce iconique. Cette robe incarne le rêve absolu avec sa traîne cathédrale de 2 mètres. Arrivée à l'atelier avec un ourlet abîmé, elle a été entièrement reprise maille par maille. Le bustier en cœur structure la silhouette tout en offrant un confort moderne.",
+                fabric: "Mikado de Soie",
+                size: "38 (Ajustable)",
+                condition: "Restaurée - Parfait état",
+                price: "1 200€ (Neuf: 2 800€)",
+                status: "Disponible"
+            },
+            
+            // ITEM 2 : L'HÉRITAGE
+            'item2': {
+                title: "L'Héritage",
+                subtitle: "Restauration Vintage 1980",
+                // J'ai mis le lien du détail dentelle ici
+                img: "https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreigwsj55ni6jhp4ybynsrp3ysliet7s2z2iuq26ycm36h5ldt27zhi",
+                desc: "Ce n'était qu'une vieille robe grenier avant de passer entre mes mains. J'ai supprimé les manches bouffantes d'époque pour créer des bretelles fines et délicates. La dentelle a été reblanchie naturellement.",
+                fabric: "Guipure Coton",
+                size: "36",
+                condition: "Transformée (Pièce Unique)",
+                price: "Sur Devis",
+                status: "Projet Client"
+            },
+
+            // ITEM 3 : (C'est ton lien vers l'atelier, pas de modale, mais je laisse au cas où)
+            'item3': {
+                title: "Esprit Sauvage",
+                img: "https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreiejikcft5pyblouh46zyp62erop5o3ewuh4zml3ahqehgb4c4a2fa",
+                // ...
+            },
+
+            // ITEM 4 : DOS NU PERLÉ (C'est le premier item de ta grille maintenant)
+            'item4': {
+                title: "Dos Nu Perlé",
+                subtitle: "Cymbeline Paris",
+                // J'ai mis le lien du Dos Nu ici
+                img: "https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreihp3jmnpm4wzupxc5r2mnimrotmjvpy6pdjnq6y25hjpgrmy6qxhq",
+                desc: "Le détail qui tue : un dos nu vertigineux bordé de perles de culture. Cette robe a fait le bonheur d'une mariée l'été dernier et cherche désormais sa nouvelle muse. Une retouche a été effectuée au niveau des hanches pour plus d'aisance.",
+                fabric: "Satin Duchesse",
+                size: "38",
+                condition: "Excellent état",
+                price: "VENDUE",
+                status: "Vendue"
+            },
+
+            // ITEM 5 : VOILE CATHÉDRALE
+            'item5': {
+                title: "Voile Cathédrale",
+                subtitle: "Création Atelier",
+                // J'ai mis le lien du Voile ici
+                img: "https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreidnmixh5bfb2h6ym4thfuvpqwltbyfeiovkl5q6mu6hmnmzui2gq4",
+                desc: "Un nuage de tulle de 3 mètres, bordé d'une dentelle de Calais fine. L'accessoire indispensable pour une entrée magistrale à l'église. Peut être monté sur peigne doré ou argenté selon votre coiffure.",
+                fabric: "Tulle Illusion",
+                size: "300cm",
+                condition: "Neuf (Création)",
+                price: "180€",
+                status: "Disponible"
+            },
+
+            // ITEM 6 : MOUSSELINE
+            'item6': {
+                title: "Mousseline de Soie",
+                subtitle: "Détail Matière",
+                // J'ai mis le lien de la Dentelle/Mousseline ici
+                img: "https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreidpbj5cexek4t6qhn5pbai7rgsxnoalozkbt2hpj6u24kqczlpdqq",
+                desc: "Focus sur la qualité de nos tissus. Ici, une mousseline de soie utilisée pour la création d'une sur-jupe amovible, permettant d'avoir deux looks en une seule robe.",
+                fabric: "Soie 100%",
+                size: "Sur mesure",
+                condition: "Création",
+                price: "Sur Devis",
+                status: "Disponible"
+            },
+
+            // ITEM 7 : DERNIÈRE ROBE
+            'item7': {
+                title: "Nom de la Robe",
+                subtitle: "Marque ou Créateur",
+                // J'ai mis le lien de la dernière image ici
+                img: "https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreihtocbo7yqq3d4sjj6o524qikmctnp36kq43roihr5hkvwx7mxjzi",
+                desc: "Description de cette nouvelle robe...",
+                fabric: "Soie sauvage",
+                size: "38/40",
+                condition: "Excellent état",
+                price: "850€",
+                status: "Disponible"
+            } 
+        };
+
+        // --- FILTRE LOGIQUE ---
+        function filterGallery(category) {
+            // Active Button Style
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Filter Items
+            const items = document.querySelectorAll('.gallery-item');
+            items.forEach(item => {
+                if (category === 'all' || item.dataset.category === category) {
+                    item.style.display = 'block';
+                    setTimeout(() => item.classList.add('visible'), 50); // Petit délai pour l'anim
+                } else {
+                    item.classList.remove('visible');
+                    setTimeout(() => item.style.display = 'none', 500);
+                }
+            });
+        }
+
+        // --- ANIMATION APPARITION SCROLL ---
+        document.addEventListener("DOMContentLoaded", () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.gallery-item').forEach(item => {
+                observer.observe(item);
+            });
+        });
+
+        // --- MODAL LOGIQUE ---
+        const modal = document.getElementById('product-modal');
+        
+        function openModal(itemId) {
+            const data = products[itemId];
+            if(!data) return;
+
+            // Remplissage des données
+            document.getElementById('modal-img').src = data.img;
+            document.getElementById('modal-title').innerText = data.title;
+            document.getElementById('modal-subtitle').innerText = data.subtitle;
+            document.getElementById('modal-desc').innerText = data.desc;
+            document.getElementById('modal-fabric').innerText = data.fabric;
+            document.getElementById('modal-size').innerText = data.size;
+            document.getElementById('modal-condition').innerText = data.condition;
+            document.getElementById('modal-price').innerText = data.price;
+            document.getElementById('modal-badge').innerText = data.status;
+
+            // Ouverture
+            modal.classList.add('open');
+            document.body.style.overflow = 'hidden'; // Bloque le scroll derrière
+        }
+
+        function closeModal() {
+            modal.classList.remove('open');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Fermer si on clique en dehors du contenu (optionnel)
+        /* modal.addEventListener('click', (e) => {
+             if (e.target === modal) closeModal();
+        }); */
+
+    </script>
+</body>
+</html>
