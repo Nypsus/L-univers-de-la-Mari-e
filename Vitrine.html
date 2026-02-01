@@ -382,14 +382,15 @@
 
         // --- DONNÉES SIMULÉES (DATA STORE) ---
         // --- DONNÉES SIMULÉES (DATA STORE) ---
+        // --- DONNÉES SIMULÉES (DATA STORE) ---
         const products = {
-            // ITEM 1 : LA MAJESTUEUSE (C'est bien l'ID item1 dans ton HTML, même s'il est placé plus bas)
+            // ITEM 1 : LA MAJESTUEUSE
             'item1': {
                 title: "La Majestueuse",
-                subtitle: "Pronovias • Collection Privée",
-                // J'ai mis le lien de la robe Princesse ici
+                subtitle: "Pronovias • Personnalisation",
                 img: "https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreibxu4vwq3ji433w7gqoifcmqxqkptyhtvvess22s5jfqqsdkxokju",
-                desc: "Une pièce iconique. Cette robe incarne le rêve absolu avec sa traîne cathédrale de 2 mètres. Arrivée à l'atelier avec un ourlet abîmé, elle a été entièrement reprise maille par maille. Le bustier en cœur structure la silhouette tout en offrant un confort moderne.",
+                // Mention : Ajustement sur mesure d'une robe existante
+                desc: "Cette pièce iconique de chez Pronovias a été entièrement retravaillée pour une cliente souhaitant conserver le volume 'Princesse' tout en adaptant le bustier à sa morphologie précise. Le travail a consisté à reprendre chaque baleine pour un confort absolu. Une preuve qu'une robe de grande marque peut devenir VOTRE robe unique.",
                 fabric: "Mikado de Soie",
                 size: "38 (Ajustable)",
                 condition: "Restaurée - Parfait état",
@@ -400,31 +401,30 @@
             // ITEM 2 : L'HÉRITAGE
             'item2': {
                 title: "L'Héritage",
-                subtitle: "Restauration Vintage 1980",
-                // J'ai mis le lien du détail dentelle ici
+                subtitle: "Transformation sur Demande",
                 img: "https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreigwsj55ni6jhp4ybynsrp3ysliet7s2z2iuq26ycm36h5ldt27zhi",
-                desc: "Ce n'était qu'une vieille robe grenier avant de passer entre mes mains. J'ai supprimé les manches bouffantes d'époque pour créer des bretelles fines et délicates. La dentelle a été reblanchie naturellement.",
-                fabric: "Guipure Coton",
-                size: "36",
-                condition: "Transformée (Pièce Unique)",
+                // Mention : La cliente a apporté sa robe
+                desc: "Ce projet est né d'une demande émouvante : 'Je veux porter la robe de ma mère, mais en version moderne'. Nous avons déconstruit le modèle des années 80 pour ne garder que la dentelle précieuse, redessiné le patronage et créé une silhouette contemporaine. Une création sur-mesure chargée d'histoire.",
+                fabric: "Guipure Coton & Tulle",
+                size: "Sur Mesure (Client)",
+                condition: "Transformation (Pièce Unique)",
                 price: "Sur Devis",
                 status: "Projet Client"
             },
 
-            // ITEM 3 : (C'est ton lien vers l'atelier, pas de modale, mais je laisse au cas où)
+            // ITEM 3 : (Lien atelier - pas de modale)
             'item3': {
                 title: "Esprit Sauvage",
                 img: "https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreiejikcft5pyblouh46zyp62erop5o3ewuh4zml3ahqehgb4c4a2fa",
-                // ...
             },
 
-            // ITEM 4 : DOS NU PERLÉ (C'est le premier item de ta grille maintenant)
+            // ITEM 4 : DOS NU PERLÉ
             'item4': {
                 title: "Dos Nu Perlé",
-                subtitle: "Cymbeline Paris",
-                // J'ai mis le lien du Dos Nu ici
+                subtitle: "Cymbeline • Ajustement Couture",
                 img: "https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreihp3jmnpm4wzupxc5r2mnimrotmjvpy6pdjnq6y25hjpgrmy6qxhq",
-                desc: "Le détail qui tue : un dos nu vertigineux bordé de perles de culture. Cette robe a fait le bonheur d'une mariée l'été dernier et cherche désormais sa nouvelle muse. Une retouche a été effectuée au niveau des hanches pour plus d'aisance.",
+                // Mention : Retouche technique
+                desc: "Le défi technique sur cette robe Cymbeline était d'adapter le dos nu vertigineux sans que la robe ne bâille. Grâce à un travail de pince invisible et de patronage précis, la robe épouse désormais parfaitement la cambrure de la cliente. Un exemple de notre savoir-faire technique.",
                 fabric: "Satin Duchesse",
                 size: "38",
                 condition: "Excellent état",
@@ -435,38 +435,37 @@
             // ITEM 5 : VOILE CATHÉDRALE
             'item5': {
                 title: "Voile Cathédrale",
-                subtitle: "Création Atelier",
-                // J'ai mis le lien du Voile ici
+                subtitle: "Création Atelier Sur Mesure",
                 img: "https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreidnmixh5bfb2h6ym4thfuvpqwltbyfeiovkl5q6mu6hmnmzui2gq4",
-                desc: "Un nuage de tulle de 3 mètres, bordé d'une dentelle de Calais fine. L'accessoire indispensable pour une entrée magistrale à l'église. Peut être monté sur peigne doré ou argenté selon votre coiffure.",
+                // Mention : Création totale
+                desc: "Création réalisée intégralement à l'atelier. La future mariée souhaitait une longueur spécifique (3 mètres) introuvable dans le commerce classique. Nous avons sélectionné ensemble le tulle 'illusion' et la dentelle de Calais pour créer cette pièce unique qui correspond exactement à ses attentes.",
                 fabric: "Tulle Illusion",
-                size: "300cm",
+                size: "300cm (Sur commande)",
                 condition: "Neuf (Création)",
                 price: "180€",
                 status: "Disponible"
             },
 
-            // ITEM 6 : MOUSSELINE
+            // ITEM 6 : MOUSSELINE (Ici on parle de la couleur !)
             'item6': {
                 title: "Mousseline de Soie",
-                subtitle: "Détail Matière",
-                // J'ai mis le lien de la Dentelle/Mousseline ici
+                subtitle: "Création Originale",
                 img: "https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreidpbj5cexek4t6qhn5pbai7rgsxnoalozkbt2hpj6u24kqczlpdqq",
-                desc: "Focus sur la qualité de nos tissus. Ici, une mousseline de soie utilisée pour la création d'une sur-jupe amovible, permettant d'avoir deux looks en une seule robe.",
+                // Mention : Couleur spécifique demandée par la cliente
+                desc: "Illustration parfaite du 'Sur-Mesure'. Cette cliente désirait sortir du blanc traditionnel. Après avoir validé ensemble les échantillons, nous avons confectionné cette sur-jupe en mousseline de soie teinte sur demande. Que vous rêviez de bleu, de jaune ou de rose poudré, tout part de votre imagination.",
                 fabric: "Soie 100%",
-                size: "Sur mesure",
+                size: "Création Unique",
                 condition: "Création",
                 price: "Sur Devis",
                 status: "Disponible"
             },
 
-            // ITEM 7 : DERNIÈRE ROBE
+            // ITEM 7 : AJOUT
             'item7': {
                 title: "Nom de la Robe",
-                subtitle: "Marque ou Créateur",
-                // J'ai mis le lien de la dernière image ici
+                subtitle: "Création ou Restauration",
                 img: "https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreihtocbo7yqq3d4sjj6o524qikmctnp36kq43roihr5hkvwx7mxjzi",
-                desc: "Description de cette nouvelle robe...",
+                desc: "Chaque détail de cette robe a été pensé selon le cahier des charges de la cliente. Du choix des boutons nacrés jusqu'à la profondeur du décolleté, c'est un processus de co-création totale entre vos envies et mes aiguilles.",
                 fabric: "Soie sauvage",
                 size: "38/40",
                 condition: "Excellent état",
