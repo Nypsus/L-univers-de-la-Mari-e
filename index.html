@@ -365,13 +365,28 @@
         <div class="absolute inset-0 bg-black/40 z-0 pointer-events-none"></div>
 
         <div class="relative z-10 text-center px-4 mt-10">
-            <p class="text-white uppercase tracking-[0.4em] text-xs md:text-sm mb-4 drop-shadow-md">Couture & Excellence depuis 1985</p>
-            <h1 class="font-amour text-7xl md:text-9xl gold-text mb-6">L'Art de la Robe</h1>
-            <p class="font-luxe text-white text-lg md:text-2xl uppercase tracking-widest max-w-2xl mx-auto mb-10 leading-relaxed border-t border-b border-white/40 py-4 drop-shadow-md">
-                Seconde Main de Luxe & <br> <span class="gold-text">Savoir-faire 1ère main</span>
+            <!-- SURTITRE : On remet l'autorité technique "1ère Main" ici -->
+            <p class="text-white uppercase tracking-[0.3em] text-xs md:text-sm mb-4 drop-shadow-md border-b border-white/20 pb-2 inline-block">
+                Couture & Savoir-Faire 1ère Main
             </p>
+            
+            <h1 class="font-amour text-7xl md:text-9xl gold-text mb-4">L'Art de la Robe</h1>
+            
+            <!-- SOUS-TITRE : On garde le Luxe mais on ajoute la Création/Sur-mesure -->
+            <p class="font-luxe text-white text-lg md:text-2xl uppercase tracking-widest max-w-3xl mx-auto mb-6 leading-relaxed drop-shadow-md">
+                Seconde Main de Luxe <span class="text-xs align-middle px-2">✦</span> 
+                <span class="gold-text font-bold">Recréation Sur-Mesure</span>
+            </p>
+
+            <!-- PETITE PHRASE : Pour expliquer que les couleurs/styles sont au choix -->
+            <p class="text-gray-300 text-xs md:text-sm italic mb-10 tracking-wide max-w-2xl mx-auto">
+                "Plus que de l'occasion, une renaissance. Nous transformons des pièces d'exception ou réalisons vos envies (couleur, forme) selon un <span class="text-[#f6e27a]">processus de création unique</span>."
+            </p>
+
             <div class="flex justify-center">
-                <a href="vitrine.html" class="btn-luxe-hero px-10 py-4 rounded-sm uppercase tracking-widest font-bold shadow-lg">Voir la Vitrine</a>
+                <a href="vitrine.html" class="btn-luxe-hero px-10 py-4 rounded-sm uppercase tracking-widest font-bold shadow-lg">
+                    Découvrir la Collection
+                </a>
             </div>
         </div>
 
@@ -433,28 +448,41 @@
                     Chaque robe commence par une émotion, tracée à la mine de plomb. Qu'il s'agisse d'une <strong>création pure</strong> ou d'une <strong>transformation radicale</strong>, mon processus reste fidèle à la haute couture :
                 </p>
                 
-                <div class="space-y-4 pt-4">
+                <div class="space-y-6 pt-6"> <!-- J'ai augmenté un peu l'espacement -->
+                    
+                    <!-- Étape 1 -->
                     <div class="flex gap-4">
                         <span class="font-luxe gold-static text-2xl">01.</span>
                         <div>
-                            <h4 class="font-bold uppercase text-xs tracking-widest text-[#2c2c2c]">L'Étude & Le Croquis</h4>
-                            <p class="text-sm text-gray-500">Analyse de votre morphologie et dessin technique pour visualiser les volumes et les dentelles.</p>
+                            <h4 class="font-bold uppercase text-xs tracking-widest text-[#2c2c2c] mb-1">L'Écoute & L'Esquisse</h4>
+                            <p class="text-sm text-gray-500 leading-relaxed">
+                                Tout commence par votre rêve. Choix des soies, dentelles et coloris (bleu roi, jaune or...). Je dessine le croquis qui traduira votre vision unique.
+                            </p>
                         </div>
                     </div>
+
+                    <!-- Étape 2 -->
                     <div class="flex gap-4">
                         <span class="font-luxe gold-static text-2xl">02.</span>
                         <div>
-                            <h4 class="font-bold uppercase text-xs tracking-widest text-[#2c2c2c]">Le Moulage & La Coupe</h4>
-                            <p class="text-sm text-gray-500">Travail direct sur mannequin pour sculpter la matière et assurer un tombé impeccable.</p>
+                            <h4 class="font-bold uppercase text-xs tracking-widest text-[#2c2c2c] mb-1">Mesures & Patronage</h4>
+                            <p class="text-sm text-gray-500 leading-relaxed">
+                                Prise de vos mensurations exactes. Création du patronage technique et réalisation d'une "toile" d'essai pour valider les volumes avant la coupe du tissu final.
+                            </p>
                         </div>
                     </div>
+
+                    <!-- Étape 3 -->
                     <div class="flex gap-4">
                         <span class="font-luxe gold-static text-2xl">03.</span>
                         <div>
-                            <h4 class="font-bold uppercase text-xs tracking-widest text-[#2c2c2c]">La Révélation</h4>
-                            <p class="text-sm text-gray-500">Finitions main, pose de perles ou ajustement de traîne pour le jour J.</p>
+                            <h4 class="font-bold uppercase text-xs tracking-widest text-[#2c2c2c] mb-1">L'Essayage & L'Ajustement</h4>
+                            <p class="text-sm text-gray-500 leading-relaxed">
+                                Le moment de vérité. La robe prend vie sur vous. Nous ajustons chaque millimètre pour un tombé parfait qui sublime votre morphologie.
+                            </p>
                         </div>
                     </div>
+
                 </div>
             </div>
 
@@ -514,10 +542,21 @@
 
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
             <div class="card-service p-8 rounded-2xl text-center group">
-                <div class="w-16 h-16 mx-auto mb-6 bg-gold-luxe rounded-full flex items-center justify-center text-black shadow-lg"><i data-feather="shopping-bag" class="w-8 h-8"></i></div>
-                <h3 class="font-luxe text-xl mb-4 uppercase">Robes Seconde Main</h3>
-                <p class="text-gray-500 text-sm mb-6 leading-relaxed">Pièces uniques de créateurs rénovées à neuf.</p>
-                <button class="text-xs font-bold uppercase tracking-widest border-b-2 border-[#d4af37] pb-1 hover:gold-static transition">Voir le catalogue</button>
+                <div class="w-16 h-16 mx-auto mb-6 bg-gold-luxe rounded-full flex items-center justify-center text-black shadow-lg">
+                    <i data-feather="shopping-bag" class="w-8 h-8"></i>
+                </div>
+                
+                <h3 class="font-luxe text-xl mb-4 uppercase">Robes & Créations Uniques</h3>
+                
+                <!-- J'ai remis ta phrase qui combine les deux notions -->
+                <p class="text-gray-500 text-sm mb-6 leading-relaxed">
+                    Pièces de créateurs rénovées à neuf & ajustement sur-mesure.
+                </p>
+                
+                <!-- ICI : Changement du bouton en lien vers la vitrine -->
+                <a href="vitrine.html" class="inline-block text-xs font-bold uppercase tracking-widest border-b-2 border-[#d4af37] pb-1 hover:gold-static transition">
+                    Voir le catalogue
+                </a>
             </div>
 
             <div class="card-service p-10 rounded-2xl text-center relative transform md:-translate-y-4 shadow-xl border-[#d4af37]">
