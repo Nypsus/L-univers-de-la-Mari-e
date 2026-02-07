@@ -204,6 +204,22 @@
             transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
         }
+
+
+        .top-fade-overlay {
+    position: fixed; /* On le passe en fixed pour qu'il reste sous la nav au début */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 250px; /* Réduit un peu pour une transition plus nette */
+    /* On utilise la couleur exacte de ton overlay global #faf9f6 */
+    background: linear-gradient(to bottom, 
+        rgba(250, 249, 246, 1) 0%, 
+        rgba(250, 249, 246, 1) 40%, /* Reste opaque sur toute la hauteur de la nav */
+        rgba(250, 249, 246, 0) 100%);
+    z-index: 40; /* Juste en dessous de la nav (50) mais au dessus du contenu */
+    pointer-events: none;
+}
     </style>
 </head>
 <body>
@@ -376,6 +392,64 @@
             </div>
         </div>
     </div>
+
+
+<!-- FOOTER (Original Restauré) -->
+    <footer id="contact" class="bg-[#1a1a1a] text-white py-20 relative overflow-hidden">
+    <!-- Décoration Or supérieure -->
+    <div class="absolute top-0 left-0 w-full h-1 bg-gold-luxe opacity-50"></div>
+
+    <div class="max-w-5xl mx-auto px-6 text-center">
+        <h2 class="font-amour text-6xl md:text-7xl gold-text mb-8">Commençons l'histoire</h2>
+        <p class="text-gray-400 mb-12 uppercase tracking-widest font-luxe text-sm">
+            Showroom à Éperlecques (62) • Envoi dans toute la France
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 text-sm font-luxe tracking-wider">
+            
+            <!-- CASE 1 : WHATSAPP DIRECT -->
+            <a href="https://wa.me/33613342900?text=Bonjour%20Maryse,%20je%20souhaiterais%20avoir%20des%20informations%20pour%20mon%20projet%20de%20mariage." 
+               target="_blank" class="footer-card p-6 rounded-lg group">
+                <i data-feather="message-circle" class="w-8 h-8 mx-auto mb-4 gold-text"></i>
+                <p class="gold-static font-bold">CONTACT WHATSAPP</p>
+                <p class="text-gray-500 group-hover:text-white mt-2">Discutons de votre projet</p>
+            </a>
+
+            <!-- CASE 2 : FACEBOOK -->
+            <a href="https://www.facebook.com/share/1HEiyoj3yR/?mibextid=wwXIfr" 
+               target="_blank" class="footer-card p-6 rounded-lg group">
+                <i data-feather="facebook" class="w-8 h-8 mx-auto mb-4 gold-text"></i>
+                <p class="gold-static font-bold">FACEBOOK</p>
+                <p class="text-gray-500 group-hover:text-white mt-2">Suivre mes créations</p>
+            </a>
+
+            <!-- CASE 3 : INSTAGRAM -->
+            <a href="https://www.instagram.com/universdelamariee" 
+               target="_blank" class="footer-card p-6 rounded-lg group">
+                <i data-feather="instagram" class="w-8 h-8 mx-auto mb-4 gold-text"></i>
+                <p class="gold-static font-bold">INSTAGRAM</p>
+                <p class="text-gray-500 group-hover:text-white mt-2">@universdelamariee</p>
+            </a>
+
+        </div>
+
+        <p class="text-[10px] text-gray-600 uppercase tracking-widest">
+            © 2026 L'Univers de la Mariée. Site créé avec Amour.
+        </p>
+    </div>
+
+    <!-- AJOUT SL EXCELLENCE -->
+<!-- AJOUT SL EXCELLENCE -->
+<div class="mt-12 pt-8 border-t border-white/10 text-center">
+    <p class="text-[10px] uppercase tracking-[0.2em] text-gray-500 font-bold">
+        Design & Stratégie Digitale par 
+        <a href="https://tech.sl-excellence.com" 
+           class="gold-static font-bold inline-block transition-all duration-500 hover:text-white hover:drop-shadow-[0_0_10px_rgba(212,175,55,0.8)] transform hover:scale-105">
+            SL Excellence Tech
+        </a>
+    </p>
+</div>
+</footer>
 
     <script>
         feather.replace();
