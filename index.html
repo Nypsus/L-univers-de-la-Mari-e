@@ -311,6 +311,22 @@
     0% { left: -30%; } 50% { left: 70%; } 100% { left: -30%; }
 }
 
+
+.top-fade-overlay {
+    position: fixed; /* On le passe en fixed pour qu'il reste sous la nav au début */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 250px; /* Réduit un peu pour une transition plus nette */
+    /* On utilise la couleur exacte de ton overlay global #faf9f6 */
+    background: linear-gradient(to bottom, 
+        rgba(250, 249, 246, 1) 0%, 
+        rgba(250, 249, 246, 1) 40%, /* Reste opaque sur toute la hauteur de la nav */
+        rgba(250, 249, 246, 0) 100%);
+    z-index: 40; /* Juste en dessous de la nav (50) mais au dessus du contenu */
+    pointer-events: none;
+}
+
     </style>
 </head>
 <body>
@@ -351,7 +367,7 @@
     <!-- HERO SECTION -->
     <header class="relative h-screen w-full flex items-center justify-center overflow-hidden">
         <div class="hero-slider-container">
-            <img src="https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreihbe7ynckavm4cobsesstyfjxkfwuh7zqhhahnvkfgh523ppfvk3y" class="slide active" alt="Robe 1">
+            <img src="https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafybeifwbwng5ey6kzjbelwmapl3y2jwn6pksnrumr2py4w5hssdcnzufm" class="slide active" alt="Robe 1">
             <img src="https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreibxu4vwq3ji433w7gqoifcmqxqkptyhtvvess22s5jfqqsdkxokju" class="slide" alt="Robe 2">
             <img src="https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreidt63pegzjzs7mbghje6lyetgrhqzkx3nvw32tdfifwh3nkj2hnee" class="slide" alt="Robe 3">
         </div>
@@ -646,6 +662,19 @@
             © 2026 L'Univers de la Mariée. Site créé avec Amour.
         </p>
     </div>
+
+    <!-- AJOUT SL EXCELLENCE -->
+<!-- AJOUT SL EXCELLENCE -->
+<!-- AJOUT SL EXCELLENCE -->
+<div class="mt-12 pt-8 border-t border-white/10 text-center">
+    <p class="text-[10px] uppercase tracking-[0.2em] text-gray-500 font-bold">
+        Design & Stratégie Digitale par 
+        <a href="https://tech.sl-excellence.com" 
+           class="gold-static font-bold inline-block transition-all duration-500 hover:text-white hover:drop-shadow-[0_0_10px_rgba(212,175,55,0.8)] transform hover:scale-105">
+            SL Excellence Tech
+        </a>
+    </p>
+</div>
 </footer>
 
     <script>
