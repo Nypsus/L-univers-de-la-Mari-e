@@ -611,25 +611,22 @@
 
     /* --- 5. BOUTON FERMER --- */
     /* --- 5. BOUTON FERMER (MOBILE) --- */
+    /* --- 5. BOUTON FERMER (MOBILE - CROIX SEULE) --- */
     .close-modal-btn {
-        position: fixed !important; /* Reste fixé à l'écran */
-        top: 25px !important; /* Descendu pour éviter les encoches de téléphone */
-        right: 25px !important; /* Bien décalé vers la gauche pour être "dedans" */
-        width: 45px !important; /* On en fait un vrai bouton tactile */
-        height: 45px !important;
-        background: white !important; /* Fond blanc pour bien se détacher */
-        border-radius: 50% !important; /* Bouton bien rond */
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.2) !important; /* Ombre luxe */
+        background: transparent !important; /* Suppression du rond */
+        border: none !important;
+        box-shadow: none !important;
+        position: fixed !important; /* Reste visible même en scrollant */
+        top: 10px !important;
+        right: 35px !important; /* On le pousse vers la gauche pour qu'il soit bien dans l'écran */
+        font-size: 3.5rem !important; 
         z-index: 1000 !important;
-        font-size: 2.2rem !important;
-        padding-bottom: 4px !important; /* Ajustement visuel du symbole × */
         
-        /* On force la couleur Or Maryse sur la croix */
-        -webkit-text-fill-color: #b8860b !important;
-        background-clip: initial !important; 
+        /* On remet ton dégradé Or luxe Maryse sans fond */
+        background: linear-gradient(135deg, #8a6628, #f6e27a, #8a6628) !important;
+        -webkit-background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
+        font-family: 'Cinzel', serif;
     }
 }
 
