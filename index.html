@@ -331,32 +331,49 @@
 
 
 @media (max-width: 768px) {
-    /* On repositionne les flèches pour le mobile */
+    /* 1. On bascule la navigation en ligne et on la place en bas */
     .slider-nav {
-        right: 15px !important; /* Plus près du bord */
-        gap: 20px !important;
-        z-index: 80 !important; /* Passe au-dessus de tout */
+        flex-direction: row !important; /* Flèches l'une à côté de l'autre */
+        top: auto !important;
+        bottom: 80px !important; /* Positionné en bas du Hero */
+        right: auto !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important; /* Centrage horizontal parfait */
+        gap: 30px !important;
+        width: 100% !important;
+        justify-content: center !important;
     }
 
-    /* On agrandit la zone de clic (Hitbox) sans agrandir l'icône */
-    .nav-arrow-btn {
-        padding: 15px !important; 
-        background: rgba(0, 0, 0, 0.2) !important; /* Léger fond pour les voir sur photos claires */
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+    /* 2. On fait pivoter les icônes pour qu'elles pointent à Gauche et à Droite */
+    /* La flèche "Haut" devient "Gauche" */
+    .nav-arrow-btn:first-child { 
+        transform: rotate(-90deg) !important; 
+    }
+    /* La flèche "Bas" devient "Droite" */
+    .nav-arrow-btn:last-child { 
+        transform: rotate(-90deg) !important; 
     }
 
-    .nav-arrow-btn svg {
-        width: 35px !important;
-        height: 35px !important;
-    }
-
-    /* On réduit la barre centrale sur mobile pour ne pas encombrer */
+    /* 3. On adapte la barre indicatrice pour qu'elle soit horizontale aussi */
     .scroll-indicator-container {
-        height: 40px !important;
+        width: 60px !important;
+        height: 2px !important;
     }
+
+    .scroll-indicator-bar {
+        width: 30% !important;
+        height: 100% !important;
+        background: linear-gradient(to right, transparent, #fff, #d4af37, transparent) !important;
+        animation: scrollMoveHoriz 2.5s ease-in-out infinite !important;
+        top: 0 !important;
+    }
+}
+
+/* Animation horizontale pour la petite barre */
+@keyframes scrollMoveHoriz {
+    0% { left: -30%; } 
+    50% { left: 70%; } 
+    100% { left: -30%; }
 }
 
     </style>
