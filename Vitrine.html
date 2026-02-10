@@ -519,57 +519,104 @@
 }
 
 
-
 @media (max-width: 768px) {
-    /* Rendre la barre fixe et scrollable horizontalement */
+    /* --- 1. NAVIGATION ET BARRE FILTRES --- */
     nav {
-        background: rgba(250, 249, 246, 0.95); /* Fond opaque pour ne pas voir les images dessous */
+        background: rgba(250, 249, 246, 0.95);
         backdrop-filter: blur(10px);
         border-bottom: 1px solid rgba(212, 175, 55, 0.2);
         padding-top: 10px !important;
         padding-bottom: 10px !important;
+        pointer-events: auto !important; /* Pour être sûr de cliquer sur mobile */
     }
 
     .filter-bar {
         display: flex !important;
-        flex-wrap: nowrap !important; /* Empêche d'aller à la ligne */
-        overflow-x: auto !important; /* Active le glissement horizontal */
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important; /* Glissement horizontal */
+        overflow-y: hidden !important; /* BLOQUE LE GLISSEMENT VERTICAL MOCE */
+        align-items: center !important; 
         white-space: nowrap;
         width: 95%;
+        height: 50px !important; /* Fixe la hauteur pour la propreté */
         padding: 5px 15px !important;
         border-radius: 25px;
-        -webkit-overflow-scrolling: touch; /* Glissement fluide sur iPhone */
+        -webkit-overflow-scrolling: touch;
     }
 
-    .filter-bar::-webkit-scrollbar { display: none; } /* Cache la barre de défilement moche */
+    .filter-bar::-webkit-scrollbar { display: none; }
 
     .filter-btn {
         padding: 6px 12px !important;
         font-size: 0.7rem !important;
     }
-}
 
-
-
-
-
-@media (max-width: 768px) {
+    /* --- 2. GRILLE ET IMAGES (FORMAT PORTRAIT) --- */
     .gallery-grid {
-        grid-template-columns: 1fr !important; /* Une seule colonne */
+        grid-template-columns: 1fr !important; 
         gap: 15px !important;
-        grid-auto-rows: auto !important; /* Désactive la hauteur Masonry */
+        grid-auto-rows: auto !important; 
     }
 
-    /* On force tous les items (Tall, Wide, Normal) à la même taille */
     .gallery-item {
         grid-row-end: span 1 !important; 
         grid-column-end: span 1 !important;
-        height: 350px !important; /* Hauteur fixe pour toutes les photos */
+        height: 550px !important; /* CHANGÉ ICI : Plus haut pour format téléphone */
     }
 
     .gallery-img {
         height: 100% !important;
-        object-fit: cover !important; /* Rogne proprement pour remplir le rectangle */
+        object-fit: cover !important;
+    }
+
+    /* --- 3. MODAL / FICHE PRODUIT (STABILITÉ) --- */
+    #product-modal {
+        overflow-x: hidden !important; /* Bloque le balancement gauche-droite */
+    }
+
+    .modal-content-grid {
+        grid-template-columns: 1fr !important; /* Image en haut, texte en bas */
+        max-height: 95vh;
+        width: 100vw !important;
+        overflow-y: auto;
+        overflow-x: hidden !important;
+    }
+
+    #modal-img { 
+        height: 50vh !important; /* Hauteur de l'image dans la fiche */
+    }
+
+    .modal-right-content {
+        padding: 30px 20px !important; /* Gain de place */
+        overflow-x: hidden !important;
+        justify-content: flex-start !important;
+    }
+
+    /* --- 4. TEXTES ET INFOS (POUR ÉVITER LES COUPURES) --- */
+    #modal-title {
+        font-size: 2.8rem !important; /* Plus petit pour mobile */
+        line-height: 1 !important;
+        margin-bottom: 15px;
+    }
+
+    .modal-right-content .grid-cols-2 {
+        grid-template-columns: 1fr !important; /* Une seule colonne évite la superposition */
+        gap: 12px !important;
+    }
+
+    #modal-condition, #modal-fabric {
+        font-size: 0.95rem !important;
+        display: block;
+    }
+
+    /* --- 5. BOUTON FERMER --- */
+    .close-modal-btn {
+        top: 10px !important;
+        right: 15px !important; /* Recalé à l'intérieur */
+        font-size: 2.5rem !important;
+        background: none !important;
+        -webkit-text-fill-color: initial !important; /* Parfois le dégradé bug en petit */
+        color: #b8860b !important;
     }
 }
 
