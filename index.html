@@ -346,10 +346,14 @@
     }
 
     .scroll-down-arrow {
-        left: auto !important; /* Annule le centrage */
+        left: auto !important; /* Annule le centrage gauche */
         right: 20px !important; /* La colle à droite */
-        transform: none !important; /* Supprime le décalage du centrage */
-        bottom: 20px !important; /* Alignée proprement en bas */
+        bottom: 20px !important; /* Position en bas */
+        
+        /* --- CORRECTION ICI --- */
+        /* On retire "transform: none !important" car il bloquait l'animation. */
+        /* On s'assure juste que la translation X (horizontale) est à 0 */
+        transform: translateX(0); 
     }
 
     /* 2. On fait pivoter les icônes pour qu'elles pointent à Gauche et à Droite */
