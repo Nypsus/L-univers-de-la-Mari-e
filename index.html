@@ -333,15 +333,23 @@
 @media (max-width: 768px) {
     /* 1. On bascule la navigation en ligne et on la place en bas */
     .slider-nav {
-        flex-direction: row !important; /* Flèches l'une à côté de l'autre */
+        flex-direction: row !important;
         top: auto !important;
-        bottom: 80px !important; /* Positionné en bas du Hero */
+        /* On descend les flèches à 40px du bas pour laisser de l'espace avec le bouton */
+        bottom: 40px !important; 
         right: auto !important;
         left: 50% !important;
-        transform: translateX(-50%) !important; /* Centrage horizontal parfait */
-        gap: 30px !important;
-        width: 100% !important;
+        transform: translateX(-50%) !important;
+        gap: 25px !important;
+        width: auto !important;
         justify-content: center !important;
+    }
+
+    .scroll-down-arrow {
+        left: auto !important; /* Annule le centrage */
+        right: 20px !important; /* La colle à droite */
+        transform: none !important; /* Supprime le décalage du centrage */
+        bottom: 20px !important; /* Alignée proprement en bas */
     }
 
     /* 2. On fait pivoter les icônes pour qu'elles pointent à Gauche et à Droite */
@@ -455,7 +463,7 @@
             </div>
         </div>
 
-        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 text-white animate-bounce z-20">
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 text-white animate-bounce z-20 scroll-down-arrow">
             <i data-feather="chevron-down"></i>
         </div>
     </header>
