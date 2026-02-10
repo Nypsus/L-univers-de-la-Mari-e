@@ -517,6 +517,63 @@
     transform: translateY(-5px);
     box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
 }
+
+
+
+@media (max-width: 768px) {
+    /* Rendre la barre fixe et scrollable horizontalement */
+    nav {
+        background: rgba(250, 249, 246, 0.95); /* Fond opaque pour ne pas voir les images dessous */
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+    }
+
+    .filter-bar {
+        display: flex !important;
+        flex-wrap: nowrap !important; /* Empêche d'aller à la ligne */
+        overflow-x: auto !important; /* Active le glissement horizontal */
+        white-space: nowrap;
+        width: 95%;
+        padding: 5px 15px !important;
+        border-radius: 25px;
+        -webkit-overflow-scrolling: touch; /* Glissement fluide sur iPhone */
+    }
+
+    .filter-bar::-webkit-scrollbar { display: none; } /* Cache la barre de défilement moche */
+
+    .filter-btn {
+        padding: 6px 12px !important;
+        font-size: 0.7rem !important;
+    }
+}
+
+
+
+
+
+@media (max-width: 768px) {
+    .gallery-grid {
+        grid-template-columns: 1fr !important; /* Une seule colonne */
+        gap: 15px !important;
+        grid-auto-rows: auto !important; /* Désactive la hauteur Masonry */
+    }
+
+    /* On force tous les items (Tall, Wide, Normal) à la même taille */
+    .gallery-item {
+        grid-row-end: span 1 !important; 
+        grid-column-end: span 1 !important;
+        height: 350px !important; /* Hauteur fixe pour toutes les photos */
+    }
+
+    .gallery-img {
+        height: 100% !important;
+        object-fit: cover !important; /* Rogne proprement pour remplir le rectangle */
+    }
+}
+
+
     </style>
 </head>
 <body>
@@ -1347,31 +1404,21 @@ function prevImg() {
 
         // --- FILTRE LOGIQUE ---
        function filterGallery(category) {
-    // 1. Retour en haut immédiat
-    window.scrollTo(0, 0);
+    window.scrollTo(0, 0); // Remonte en haut
 
-    // 2. Gestion des boutons
-    const activeBtn = window.event ? window.event.currentTarget : null;
-    if (activeBtn) {
-        document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-        activeBtn.classList.add('active');
-    }
+    // Gestion des boutons
+    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+    if (event) event.currentTarget.classList.add('active');
 
-    // 3. Filtrage SANS DELAI pour éviter les bugs de mélange
     const items = document.querySelectorAll('.gallery-item');
     items.forEach(item => {
-        const rawCategories = item.dataset.category ? item.dataset.category.trim() : "";
-        const itemCategories = rawCategories.split(/\s+/);
-
-        if (category === 'all' || itemCategories.includes(category)) {
-            // Affichage immédiat pour bloquer le bug
+        const itemCat = item.dataset.category ? item.dataset.category.split(' ') : [];
+        
+        if (category === 'all' || itemCat.includes(category)) {
             item.style.display = 'block';
-            // On utilise requestAnimationFrame pour une transition fluide sans bug
-            requestAnimationFrame(() => {
-                item.classList.add('visible');
-            });
+            // Petit délai pour l'animation
+            setTimeout(() => item.classList.add('visible'), 10);
         } else {
-            // Disparition immédiate
             item.classList.remove('visible');
             item.style.display = 'none';
         }
