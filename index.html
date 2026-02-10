@@ -331,47 +331,43 @@
 
 
 @media (max-width: 768px) {
-    /* 1. On bascule la navigation en ligne et on la place en bas */
+    /* 1. LES FLÈCHES (NAVIGATION) : On les descend pour créer l'espace */
     .slider-nav {
         flex-direction: row !important;
         top: auto !important;
-        /* On descend les flèches à 40px du bas pour laisser de l'espace avec le bouton */
-        bottom: 40px !important; 
+        bottom: 35px !important; /* On descend à 35px du bord bas */
         right: auto !important;
         left: 50% !important;
         transform: translateX(-50%) !important;
-        gap: 25px !important;
+        gap: 30px !important;
         width: auto !important;
         justify-content: center !important;
+        z-index: 100 !important;
     }
 
+    /* 2. LA PETITE FLÈCHE BLANCHE (REBOND) : On la met tout en bas à droite */
     .scroll-down-arrow {
-        left: auto !important; /* Annule le centrage gauche */
-        right: 20px !important; /* La colle à droite */
-        bottom: 20px !important; /* Position en bas */
-        
-        /* --- CORRECTION ICI --- */
-        /* On retire "transform: none !important" car il bloquait l'animation. */
-        /* On s'assure juste que la translation X (horizontale) est à 0 */
+        left: auto !important;
+        right: 15px !important; /* Collée à droite */
+        bottom: 15px !important; /* Plus bas que les flèches pour ne pas gêner */
+        /* ON NE MET PAS DE !important ICI POUR LAISSER LE REBOND MARCHER */
         transform: translateX(0); 
     }
 
-    /* 2. On fait pivoter les icônes pour qu'elles pointent à Gauche et à Droite */
-    /* La flèche "Haut" devient "Gauche" */
-    .nav-arrow-btn:first-child { 
-        transform: rotate(-90deg) !important; 
-    }
-    /* La flèche "Bas" devient "Droite" */
-    .nav-arrow-btn:last-child { 
-        transform: rotate(-90deg) !important; 
+    /* 3. LE CONTENEUR DE TEXTE (TITRE + BOUTON) : On le remonte pour créer l'espace */
+    .relative.z-10.text-center {
+        margin-top: -5vh !important; /* On remonte tout le bloc vers le haut */
     }
 
-    /* 3. On adapte la barre indicatrice pour qu'elle soit horizontale aussi */
+    /* 4. ROTATION DES FLÈCHES */
+    .nav-arrow-btn:first-child { transform: rotate(-90deg) !important; }
+    .nav-arrow-btn:last-child { transform: rotate(-90deg) !important; }
+
+    /* 5. BARRE DORÉE HORIZONTALE */
     .scroll-indicator-container {
-        width: 60px !important;
+        width: 50px !important;
         height: 2px !important;
     }
-
     .scroll-indicator-bar {
         width: 30% !important;
         height: 100% !important;
