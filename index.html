@@ -327,6 +327,38 @@
     pointer-events: none;
 }
 
+
+
+
+@media (max-width: 768px) {
+    /* On repositionne les flèches pour le mobile */
+    .slider-nav {
+        right: 15px !important; /* Plus près du bord */
+        gap: 20px !important;
+        z-index: 80 !important; /* Passe au-dessus de tout */
+    }
+
+    /* On agrandit la zone de clic (Hitbox) sans agrandir l'icône */
+    .nav-arrow-btn {
+        padding: 15px !important; 
+        background: rgba(0, 0, 0, 0.2) !important; /* Léger fond pour les voir sur photos claires */
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .nav-arrow-btn svg {
+        width: 35px !important;
+        height: 35px !important;
+    }
+
+    /* On réduit la barre centrale sur mobile pour ne pas encombrer */
+    .scroll-indicator-container {
+        height: 40px !important;
+    }
+}
+
     </style>
 </head>
 <body>
@@ -367,12 +399,12 @@
     <!-- HERO SECTION -->
     <header class="relative h-screen w-full flex items-center justify-center overflow-hidden">
         <div class="hero-slider-container">
-            <img src="https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreiazsk6tsiukirh4xlxei2kbvlo2hftgqggwmkik23yamsdpgtqdu4" class="slide active" alt="Robe 1">
-            <img src="https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreibxu4vwq3ji433w7gqoifcmqxqkptyhtvvess22s5jfqqsdkxokju" class="slide" alt="Robe 2">
+            <img src="https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreibxu4vwq3ji433w7gqoifcmqxqkptyhtvvess22s5jfqqsdkxokju" class="slide active" alt="Robe 1">
+            <img src="https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreiazsk6tsiukirh4xlxei2kbvlo2hftgqggwmkik23yamsdpgtqdu4" class="slide" alt="Robe 2">
             <img src="https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreidt63pegzjzs7mbghje6lyetgrhqzkx3nvw32tdfifwh3nkj2hnee" class="slide" alt="Robe 3">
         </div>
 
-        <div class="slider-nav hidden md:flex">
+        <div class="slider-nav flex">
             <button onclick="prevSlide()" class="nav-arrow-btn" aria-label="Précédent"><i data-feather="chevron-up"></i></button>
             <div class="scroll-indicator-container"><div class="scroll-indicator-bar"></div></div>
             <button onclick="nextSlide()" class="nav-arrow-btn" aria-label="Suivant"><i data-feather="chevron-down"></i></button>
