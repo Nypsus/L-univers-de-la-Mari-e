@@ -40,6 +40,14 @@
         }
         @keyframes shine { to { background-position: 200% center; } }
 
+        /* On crée l'effet de survol en CSS car Tailwind ne reconnaît pas la classe personnalisée Or Maryse */
+        .btn-contact:hover {
+            background: linear-gradient(135deg, #b8860b, #f6e27a, #d4af37) !important;
+            color: #000 !important;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+        }
+
         /* --- STYLES SPÉCIFIQUES VITRINE INNOVANTE --- */
 
         /* 1. FILTRES FLOTTANTS GLASSMORPHISM */
@@ -144,40 +152,108 @@
 
         /* 4. MODAL IMMERSIVE (Fiche Histoire) */
         #product-modal {
-            position: fixed; inset: 0;
-            background: rgba(250, 249, 246, 0.98);
-            z-index: 200;
-            display: none;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-            overflow-y: auto;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8); /* Fond sombre transparent */
+            z-index: 500;
+            display: none; 
+            align-items: center; /* Centre la fiche verticalement */
+            justify-content: center; /* Centre la fiche horizontalement */
+            padding: 20px;
         }
-        #product-modal.open { display: block; opacity: 1; }
-        
+
+        #product-modal.open {
+            display: flex; /* Utilise flex pour le centrage parfait */
+        }
+
         .modal-content-grid {
             display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            min-height: 100vh;
+            grid-template-columns: 1fr 1fr; /* Équilibre parfait 50/50 */
+            width: 100%;
+            max-width: 1200px; /* Largeur confortable */
+            height: 95vh; /* PREND PRESQUE TOUTE LA HAUTEUR */
+            background: #faf9f6;
+            overflow: hidden; 
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            position: relative;
         }
         @media (max-width: 768px) {
             .modal-content-grid { grid-template-columns: 1fr; }
         }
 
+        /* --- LE BOUTON FERMER OR LUXE --- */
         .close-modal-btn {
-            position: fixed; top: 30px; right: 30px;
+            position: absolute;
+            top: 20px;
+            right: 20px;
             z-index: 210;
-            font-size: 2rem;
-            color: #d4af37;
-            background: white;
-            width: 60px; height: 60px;
-            border-radius: 50%;
-            border: 1px solid #d4af37;
+            background: transparent !important;
+            border: none !important;
+            /* On utilise ton dégradé Or Luxe Maryse */
+            background: linear-gradient(135deg, #8a6628, #f6e27a, #8a6628) !important;
+            -webkit-background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+            font-size: 3rem;
+            font-family: 'Cinzel', serif;
             cursor: pointer;
-            transition: all 0.3s;
-            display: flex; align-items: center; justify-content: center;
+            transition: all 0.4s ease;
         }
-        .close-modal-btn:hover { transform: rotate(90deg); background: #d4af37; color: white; }
 
+        .close-modal-btn:hover {
+            transform: rotate(90deg) scale(1.2);
+            filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.5));
+        }
+
+        /* --- AJUSTEMENT TEXTE (DROITE) --- */
+        .modal-right-content {
+            padding: 60px !important; 
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; /* Aligne le contenu vers le haut pour éviter de couper le titre */
+            overflow-y: auto;
+        }
+
+        /* --- CONTENEUR IMAGE AVEC CURSEUR LOUPE --- */
+        /* Fond harmonisé avec la partie droite (#faf9f6) */
+        .modal-image-container {
+            display: flex; /* Active le mode boîte souple */
+            justify-content: center; /* Centre horizontalement */
+            align-items: center; /* Centre verticalement */
+            width: 100%;
+            height: 100%;
+            background: #faf9f6 !important; /* Même couleur que la partie droite */
+            overflow: hidden;
+            cursor: crosshair;
+        }
+        #modal-img {
+            max-width: 100%; 
+            max-height: 100%;
+            object-fit: contain !important;
+            /* AJOUTE opacity 0.5s ICI : */
+            transition: transform 0.1s ease-out, opacity 0.5s ease-in-out !important;
+            transform-origin: center;
+            opacity: 1;
+        }
+
+        .modal-fade-out {
+            opacity: 0 !important;
+        }
+
+        /* --- QUAND ON SURVOLE (ZOOM) --- */
+        .modal-image-container:hover #modal-img {
+            transform: scale(2.5); /* Puissance du zoom (2.5x) */
+            cursor: crosshair;
+        }
+
+        @media (max-width: 768px) {
+            .modal-content-grid { 
+                grid-template-columns: 1fr; 
+                max-height: 95vh;
+                overflow-y: auto;
+            }
+            #modal-img { height: 40vh; }
+        }
         /* NAVIGATION BAS DE PAGE */
         .nav-back-home {
             position: fixed; bottom: 30px; left: 30px; z-index: 50;
@@ -220,6 +296,227 @@
     z-index: 40; /* Juste en dessous de la nav (50) mais au dessus du contenu */
     pointer-events: none;
 }
+
+
+
+
+/* Effet Poudre d'Or Dynamique (Atelier) */
+.gold-powder {
+    position: relative;
+    border: 1px solid rgba(212, 175, 55, 0.4);
+}
+.gold-powder::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(45deg, transparent, #dfb857, #fff9d1, #dfb857, transparent);
+    background-size: 400% 400%;
+    z-index: -1;
+    animation: powderAnim 4s linear infinite;
+    opacity: 0.6;
+}
+@keyframes powderAnim {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+/* Effet Prestige Top 3 (Luxe) */
+.prestige-top3 {
+    border: 2px solid #d4af37;
+    box-shadow: inset 0 0 20px rgba(212, 175, 55, 0.2), 0 0 30px rgba(212, 175, 55, 0.15);
+}
+.prestige-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(5px);
+    border: 1px solid #d4af37;
+    padding: 10px 20px;
+    z-index: 15;
+    pointer-events: none;
+    opacity: 0;
+    transition: 0.4s;
+}
+.gallery-item:hover .prestige-label { opacity: 1; }
+
+/* Flèches Modal Or */
+.modal-nav-btn {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(212, 175, 55, 0.4) !important;
+    /* On utilise ton dégradé Or Maryse sur les flèches */
+    color: #dfb857 !important; 
+    font-size: 2.5rem !important;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(5px);
+    pointer-events: auto;
+}
+
+.modal-nav-btn:hover {
+    background: rgba(212, 175, 55, 0.15) !important;
+    border-color: #f6e27a !important;
+    color: #fff !important;
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+}
+
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    grid-auto-rows: 20px;
+    gap: 20px;
+    grid-auto-flow: dense; /* <--- AJOUTE CETTE LIGNE ABSOLUMENT */
+}
+
+
+/* Cette classe force l'image à ne pas dépasser la hauteur d'un item normal */
+.item-crop-fill {
+    grid-row-end: span 14 !important; /* On s'aligne sur la taille 'normal' */
+    height: 100%;
+}
+
+/* FORCE LE BADGE EN OR (Pour l'intemporelle) */
+.badge-gold-prestige {
+    background: linear-gradient(135deg, #b8860b, #f6e27a, #d4af37) !important;
+    color: #000 !important;
+    font-weight: bold !important;
+    border: none !important;
+}
+
+/* FORCE LE FORMAT PAYSAGE (Rogner le vertical) */
+/* FORMAT BANDEAU ULTRA-FIN POUR SCELLER LA MOSAÏQUE */
+/* LE RÉGLAGE D'OR : ENTRE LE 5 ET LE 7 */
+.item-landscape-fill {
+    grid-row-end: span 6 !important; /* L'équilibre parfait pour boucher le trou */
+    grid-column-end: span 1;
+}
+
+.item-landscape-fill img {
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center;
+}
+
+/* Transition douce pour le changement d'images */
+.gallery-img {
+    transition: opacity 0.8s ease-in-out, transform 1.2s ease !important;
+}
+.fade-out { opacity: 0; }
+
+
+/* EFFET PALETTE OR DYNAMIQUE (HALO) */
+.gold-palette-glow {
+    position: relative;
+    z-index: 1;
+}
+.gold-palette-glow::before {
+    content: '';
+    position: absolute;
+    inset: -4px; /* Épaisseur du halo */
+    background: linear-gradient(45deg, #8a6628, #f6e27a, #fff9d1, #f6e27a, #8a6628);
+    background-size: 400% 400%;
+    z-index: -1;
+    animation: paletteMove 6s linear infinite;
+    filter: blur(8px); /* Effet diffusé luxueux */
+    opacity: 0.8;
+    border-radius: 8px;
+}
+@keyframes paletteMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+
+/* EFFET FIL D'OR LUXE (ULTRA-FIN) */
+.gold-powder-border {
+    position: relative;
+    padding: 2px; /* Liseré extrêmement fin */
+    background: #faf9f6; /* Couleur du site pour la propreté */
+    overflow: hidden;
+    display: block;
+    border-radius: 4px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.5s ease;
+}
+
+/* LE FIL D'OR QUI CIRCULE */
+.gold-powder-border::before {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    /* Un faisceau d'or pur très étroit */
+    background: conic-gradient(
+        transparent, 
+        transparent, 
+        #dfb857, 
+        #fff9d1, 
+        #dfb857, 
+        transparent, 
+        transparent 20%
+    );
+    animation: goldWireRotate 4s linear infinite;
+    z-index: 0;
+}
+
+/* L'ÉCLAT DE SURFACE (GLIMMER) */
+.gold-powder-border::after {
+    content: '';
+    position: absolute;
+    inset: 2px; /* Se place juste sur l'image */
+    background: linear-gradient(
+        105deg, 
+        transparent 40%, 
+        rgba(255, 249, 209, 0.2) 50%, 
+        transparent 60%
+    );
+    background-size: 200% 100%;
+    animation: goldGlimmer 6s infinite;
+    z-index: 3;
+    pointer-events: none;
+}
+
+/* L'IMAGE AU CENTRE */
+.gold-powder-border img {
+    position: relative;
+    z-index: 2;
+    display: block;
+    width: 100%;
+    border-radius: 2px;
+}
+
+/* ANIMATIONS */
+
+/* Rotation du fil d'or */
+@keyframes goldWireRotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Reflet passager sur la photo */
+@keyframes goldGlimmer {
+    0% { background-position: 200% 0; }
+    30% { background-position: -200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* Interaction au survol */
+.gold-powder-border:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+}
     </style>
 </head>
 <body>
@@ -253,7 +550,7 @@
     <div class="gallery-grid" id="gallery-container">
         
         <!-- ITEM 1 : DOS NU (WIDE) -->
-        <div class="gallery-item wide group" data-category="vintage" onclick="openModal('item4')">
+        <div class="gallery-item wide group" data-category="princesse accessoires" onclick="openModal('item4')">
             <div class="badge-status">Vendue</div>
             <img src="https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreihp3jmnpm4wzupxc5r2mnimrotmjvpy6pdjnq6y25hjpgrmy6qxhq" class="gallery-img" alt="Dos nu">
             <div class="overlay-info">
@@ -263,8 +560,8 @@
         </div>
 
         <!-- ITEM 2 : HÉRITAGE (NORMAL) -->
-        <div class="gallery-item normal group" data-category="vintage" onclick="openModal('item2')">
-            <div class="badge-status">Transformée</div>
+        <div class="gallery-item normal group" data-category="princesse accessoires" onclick="openModal('item2')">
+            <div class="badge-status">Vendue</div>
             <img src="https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreigwsj55ni6jhp4ybynsrp3ysliet7s2z2iuq26ycm36h5ldt27zhi" class="gallery-img" alt="Détail Dentelle">
             <div class="overlay-info">
                 <span class="font-amour text-3xl text-[#f6e27a] mb-1">L'Héritage</span>
@@ -286,7 +583,7 @@
 
         <!-- ITEM 4 : LA MAJESTUEUSE (TALL - A LA PLACE DU VOILE) -->
         <div class="gallery-item normal group" data-category="princesse" onclick="openModal('item1')">
-            <div class="badge-status">Disponible</div>
+            <div class="badge-status">Pièce Unique</div>
             <img src="https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreibxu4vwq3ji433w7gqoifcmqxqkptyhtvvess22s5jfqqsdkxokju" class="gallery-img" alt="Robe Princesse">
             <div class="overlay-info">
                 <span class="font-amour text-3xl text-[#f6e27a] mb-1">La Majestueuse</span>
@@ -296,8 +593,8 @@
         </div>
 
         <!-- ITEM 5 : VOILE CATHÉDRALE (NORMAL - ENSUITE) -->
-        <div class="gallery-item wide group" data-category="boheme" onclick="openModal('item6')">
-            <div class="badge-status">Disponible</div>
+        <div class="gallery-item wide group" data-category="princesse accessoires vintage" onclick="openModal('item6')">
+            <div class="badge-status">Transformée</div>
             <img src="https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreidpbj5cexek4t6qhn5pbai7rgsxnoalozkbt2hpj6u24kqczlpdqq" class="gallery-img" alt="Dentelle">
             <div class="overlay-info">
                 <span class="font-amour text-3xl text-[#f6e27a] mb-1">Mousseline de Soie</span>
@@ -306,8 +603,8 @@
         </div>
 
         <!-- ITEM 6 : MOUSSELINE (WIDE - A DROITE) -->
-         <div class="gallery-item normal group" data-category="accessoires" onclick="openModal('item5')">
-            <div class="badge-status">Disponible</div>
+         <div class="gallery-item normal group" data-category="princesse accessoires" onclick="openModal('item5')">
+            <div class="badge-status">Transformée</div>
             <img src="https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreidnmixh5bfb2h6ym4thfuvpqwltbyfeiovkl5q6mu6hmnmzui2gq4" class="gallery-img" alt="Voile">
             <div class="overlay-info">
                 <span class="font-amour text-3xl text-[#f6e27a] mb-1">Voile Cathédrale</span>
@@ -320,13 +617,243 @@
 
         <!-- ITEM 7 : AJOUT/SUITE -->
         <div class="gallery-item normal group" data-category="princesse" onclick="openModal('item7')">
-            <div class="badge-status">Disponible</div>
-            <img src="https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreihtocbo7yqq3d4sjj6o524qikmctnp36kq43roihr5hkvwx7mxjzi" class="gallery-img" alt="Description">
+            <div class="badge-status">Archive Maryse</div>
+            <img src="https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreihtocbo7yqq3d4sjj6o524qikmctnp36kq43roihr5hkvwx7mxjzi" class="gallery-img" alt="L'Absolu">
             <div class="overlay-info">
-                <span class="font-amour text-3xl text-[#f6e27a] mb-1">Nom de la robe</span>
-                <h3 class="font-luxe text-white uppercase text-lg tracking-widest border-b border-[#d4af37] pb-2 mb-2 w-max">Marque • Année</h3>
+                <span class="font-amour text-3xl text-[#f6e27a] mb-1">L'Absolu</span>
+                <h3 class="font-luxe text-white uppercase text-lg tracking-widest border-b border-[#d4af37] pb-2 mb-2 w-max">Signature Maryse • 2025</h3>
             </div>
         </div>
+
+
+        <!-- 1 - PRINCESSE DENTELLE -->
+<div class="gallery-item normal group" data-category="princesse accessoires" onclick="openModal('n1')">
+    <div class="badge-status">Héritage</div>
+    <img src="https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreiasj3am76bjd7qxzzng3572z46hpwetjmebt4ode3rmrckhioyviq" class="gallery-img">
+    <div class="overlay-info">
+        <span class="font-amour text-3xl text-[#f6e27a] mb-1">Douceur de Calais</span>
+        <h3 class="font-luxe text-white uppercase text-lg tracking-widest border-b border-[#d4af37] pb-2 mb-2 w-max">Collection Princesse</h3>
+    </div>
+</div>
+
+<!-- 2 - RUBY (MULTIPLE) -->
+<div class="gallery-item normal group" data-category="princesse" onclick="openModal('n2')" onmouseenter="startHoverSlide(this, 'n2')" onmouseleave="stopHoverSlide(this, 'n2')">
+    <div class="badge-status">Coup de Coeur</div>
+    <img src="https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreigy4linssxcux64idodtm7ekdr3g52sqtjfzmcug6zrlq3yitfyta" class="gallery-img">
+    <div class="overlay-info">
+        <span class="font-amour text-3xl text-[#f6e27a] mb-1">Éclat Ruby</span>
+        <h3 class="font-luxe text-white uppercase text-lg tracking-widest border-b border-[#d4af37] pb-2 mb-2 w-max">Taffetas & Passion</h3>
+    </div>
+</div>
+
+<!-- CETTE IMAGE VA MAINTENANT SE ROGNER POUR DEVENIR UN RECTANGLE PAYSAGE -->
+<a href="index.html#atelier" class="gallery-item item-landscape-fill group gold-powder-border" data-category="accessoires">
+    <div class="badge-status">L'Atelier</div>
+    <img src="https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreifoyxfuekguacjpmno2cdfev4pmh3myvc3clw7s7qerxtu5caqbvi" class="gallery-img">
+    <div class="overlay-info">
+        <span class="font-amour text-3xl text-[#f6e27a] mb-1">Détails de Soie</span>
+        <h3 class="font-luxe text-white uppercase text-lg tracking-widest border-b border-[#d4af37] pb-2 mb-2 w-max">Le Savoir-Faire</h3>
+    </div>
+</a>
+
+<!-- 3 - EVENTS (WIDE + REDIRECT) -->
+<a href="event.html" class="gallery-item wide group">
+    <div class="badge-status">Événements</div>
+    <img src="https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreiahhohjmblmqqu5ekacoicnjyat35iy3boqsy2puq2hmcb6dec4lu" class="gallery-img">
+    <div class="overlay-info">
+        <span class="font-amour text-3xl text-[#f6e27a] mb-1">Défilés & Salons</span>
+        <h3 class="font-luxe text-white uppercase text-lg tracking-widest border-b border-[#d4af37] pb-2 mb-2 w-max">Découvrir nos Events</h3>
+    </div>
+</a>
+
+<!-- 4 - PRINCESSE SATIN -->
+<div class="gallery-item normal group" data-category="princesse vintage" onclick="openModal('n4')">
+    <div class="badge-status">Rare</div>
+    <img src="https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreihiuufm2fr6hosthd5u4wzkazi7pxsvyxm5mc3tlha62sztznzrqu" class="gallery-img">
+    <div class="overlay-info">
+        <span class="font-amour text-3xl text-[#f6e27a] mb-1">Satin Impérial</span>
+        <h3 class="font-luxe text-white uppercase text-lg tracking-widest border-b border-[#d4af37] pb-2 mb-2 w-max">Satin Duchesse</h3>
+    </div>
+</div>
+
+<!-- 5 - VENDUE CATALOGUE -->
+<div class="gallery-item normal group" data-category="princesse" onclick="openModal('n5')">
+    <div class="badge-status">Vendue</div>
+    <img src="https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreibswddfwu32ocsl6xafqjfrcdbmhtqcmzqqcbqbhtymdggepznq3m" class="gallery-img">
+    <div class="overlay-info">
+        <span class="font-amour text-3xl text-[#f6e27a] mb-1">L'Iconique</span>
+        <h3 class="font-luxe text-white uppercase text-lg tracking-widest border-b border-[#d4af37] pb-2 mb-2 w-max">Modèle Catalogue</h3>
+    </div>
+</div>
+
+<!-- 9 - PRESTIGE CHATEAU (WIDE) -->
+<div class="gallery-item wide group" data-category="princesse" onclick="openModal('n9')">
+    <div class="badge-status">Prestige</div>
+    <img src="https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreiex472dwzb5ma7dskogmguxwqw6h24wghy62tn7wupq4gcalgdxly" class="gallery-img">
+    <div class="overlay-info">
+        <span class="font-amour text-3xl text-[#f6e27a] mb-1">Vie de Château</span>
+        <h3 class="font-luxe text-white uppercase text-lg tracking-widest border-b border-[#d4af37] pb-2 mb-2 w-max">L'Art du Mariage</h3>
+    </div>
+</div>
+
+<!-- 14 - ATELIER REDIRECT (WIDE + GOLD POWDER) -->
+<a href="index.html#atelier" class="gallery-item wide group gold-palette-glow">
+    <div class="badge-status">L'Atelier</div>
+    <img src="https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreialtzlq544uo5z4iltdkovfwjgez3ksxhqfvc2sjhexyi6x5uvih4" class="gallery-img">
+    <div class="overlay-info">
+        <span class="font-amour text-3xl text-[#f6e27a] mb-1">L'Art de Créer</span>
+        <h3 class="font-luxe text-white uppercase text-lg tracking-widest border-b border-[#d4af37] pb-2 mb-2 w-max">Voir la Confection</h3>
+    </div>
+</a>
+
+<!-- 21 - TOP 3 VENDUES (SPECIAL EFFECT) -->
+<div class="gallery-item normal group" data-category="princesse accessoires" onclick="openModal('n21')">
+    <div class="badge-status badge-gold-prestige">Incontournable</div>
+    <img src="https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreictjvjnuo7vvpz3soimxpcnd2tvsvuuifelpxekshvvybkuhh2a6y" class="gallery-img">
+    <div class="overlay-info">
+        <span class="font-amour text-3xl text-[#f6e27a] mb-1">L'Intemporelle</span>
+        <h3 class="font-luxe text-white uppercase text-lg tracking-widest border-b border-[#d4af37] pb-2 mb-2 w-max">Taffetas Craquant</h3>
+    </div>
+</div>
+
+<!-- 22 - PERFECTO (WIDE) -->
+<div class="gallery-item wide group" data-category="princesse" onclick="openModal('n22')">
+    <div class="badge-status">Coup de Cœur</div>
+    <img src="https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreiaq2r4jour7k46maavotk555flqiro42ieeclhvj5eqhhp5t7mar4" class="gallery-img">
+    <div class="overlay-info">
+        <span class="font-amour text-3xl text-[#f6e27a] mb-1">Perfecto Taffetas</span>
+        <h3 class="font-luxe text-white uppercase text-lg tracking-widest border-b border-[#d4af37] pb-2 mb-2 w-max">L'Audace Couture</h3>
+    </div>
+</div>
+
+
+
+
+<!-- n6 - DRAPPÉ TAFFETAS (SURVOL + AUTO FICHE) -->
+<div class="gallery-item normal group" data-category="princesse accessoires" onclick="openModal('n6')" onmouseenter="startHoverSlide(this, 'n6')" onmouseleave="stopHoverSlide(this, 'n6')">
+    <div class="badge-status">Voile & Détails</div>
+    <img src="https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreifuhsb7z473zvg2a2b5qx4xuiqdmleto44bowafiqjz5t6h2afmpy" class="gallery-img">
+    <div class="overlay-info">
+        <span class="font-amour text-3xl text-[#f6e27a] mb-1">Drappé de Soie</span>
+        <h3 class="font-luxe text-white uppercase text-lg tracking-widest border-b border-[#d4af37] pb-2 mb-2 w-max">Taffetas Plissé</h3>
+    </div>
+</div>
+
+<!-- n7 - TRANSFORMATION ATELIER (GOLD POWDER) -->
+<a href="index.html#atelier" class="gallery-item normal group gold-powder">
+    <div class="badge-status">Atelier</div>
+    <img src="https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreifnrdtaj6azott76gduhk5q5iohpc6rj2kmb2emp5bjk66dwqxtc4" class="gallery-img">
+    <div class="overlay-info">
+        <span class="font-amour text-3xl text-[#f6e27a] mb-1">Seconde Vie</span>
+        <h3 class="font-luxe text-white uppercase text-lg tracking-widest border-b border-[#d4af37] pb-2 mb-2 w-max">Transformation</h3>
+    </div>
+</a>
+
+<!-- n10 - JUPETTE VINTAGE -->
+<div class="gallery-item normal group" data-category="vintage" onclick="openModal('n10')">
+    <div class="badge-status">Unique</div>
+    <img src="https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreieeywnhfdaio3kyeheulrdfoe3ikiwu7x5zeo6nlbnufhd6atutom" class="gallery-img">
+    <div class="overlay-info">
+        <span class="font-amour text-3xl text-[#f6e27a] mb-1">La Jupette</span>
+        <h3 class="font-luxe text-white uppercase text-lg tracking-widest border-b border-[#d4af37] pb-2 mb-2 w-max">Satin & Dentelle</h3>
+    </div>
+</div>
+
+<!-- n11 - COURBES DIVINES (SURVOL) -->
+<div class="gallery-item normal group" data-category="princesse accessoires" onclick="openModal('n11')" onmouseenter="startHoverSlide(this, 'n11')" onmouseleave="stopHoverSlide(this, 'n11')">
+    <div class="badge-status">Sur Mesure</div>
+    <img src="https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreidx2pqfncrqqseubddyrtxhqv56ezc4pywii2uaelub7wow7n2exe" class="gallery-img">
+    <div class="overlay-info">
+        <span class="font-amour text-3xl text-[#f6e27a] mb-1">Courbes Divines</span>
+        <h3 class="font-luxe text-white uppercase text-lg tracking-widest border-b border-[#d4af37] pb-2 mb-2 w-max">Tulle & Satin</h3>
+    </div>
+</div>
+
+<!-- n12 - EVENTS MULTI (AUTO SLIDE) -->
+<a href="event.html" class="gallery-item normal group">
+    <div class="badge-status">Voile & Détails</div>
+    <img src="https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreidht35hkhb2tlck5dthsiggqeqnh2c2bzqlpqcpg473q4pw7dw5ym" class="gallery-img" id="img-n12">
+    <div class="overlay-info">
+        <span class="font-amour text-3xl text-[#f6e27a] mb-1">Nos Collections</span>
+        <h3 class="font-luxe text-white uppercase text-lg tracking-widest border-b border-[#d4af37] pb-2 mb-2 w-max">Événements</h3>
+    </div>
+</a>
+
+<!-- n13 - SAPHIR (SURVOL) -->
+<div class="gallery-item normal group" data-category="princesse accessoires" onclick="openModal('n13')" onmouseenter="startHoverSlide(this, 'n13')" onmouseleave="stopHoverSlide(this, 'n13')">
+    <div class="badge-status">Showroom</div>
+    <img src="https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreidryxwmthlnuuylq4gbcjsjvavzknkkt7fwb5wtr7iawhb5m7zzey" class="gallery-img">
+    <div class="overlay-info">
+        <span class="font-amour text-3xl text-[#f6e27a] mb-1">Éclat Saphir</span>
+        <h3 class="font-luxe text-white uppercase text-lg tracking-widest border-b border-[#d4af37] pb-2 mb-2 w-max">Organza Azur</h3>
+    </div>
+</div>
+
+
+
+<!-- n15 - BOHÈME TULLE (SURVOL) -->
+<div class="gallery-item normal group" data-category="boheme vintage" onclick="openModal('n15')" onmouseenter="startHoverSlide(this, 'n15')" onmouseleave="stopHoverSlide(this, 'n15')">
+    <div class="badge-status">Bohème Chic</div>
+    <img src="https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreiakqdptykiov2lih2g4q2abchouikyrjhgjzdlbliz4f5vsdqy7ii" class="gallery-img">
+    <div class="overlay-info">
+        <span class="font-amour text-3xl text-[#f6e27a] mb-1">Brumes de Soie</span>
+        <h3 class="font-luxe text-white uppercase text-lg tracking-widest border-b border-[#d4af37] pb-2 mb-2 w-max">Tulle de Soie</h3>
+    </div>
+</div>
+
+<!-- n16 - MOUSSELINE 1 (SURVOL) -->
+<div class="gallery-item normal group" data-category="boheme" onclick="openModal('n16')" onmouseenter="startHoverSlide(this, 'n16')" onmouseleave="stopHoverSlide(this, 'n16')">
+    <div class="badge-status">Showroom</div>
+    <img src="https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreidqqmzu2lwv7kqoxjkg3qfh7xujci7xzrblfqxqmdnatxewril4mm" class="gallery-img">
+    <div class="overlay-info">
+        <span class="font-amour text-3xl text-[#f6e27a] mb-1">Douce Mousseline</span>
+        <h3 class="font-luxe text-white uppercase text-lg tracking-widest border-b border-[#d4af37] pb-2 mb-2 w-max">Bohème</h3>
+    </div>
+</div>
+
+<!-- n17 - MOUSSELINE 2 (SURVOL) -->
+<div class="gallery-item normal group" data-category="boheme" onclick="openModal('n17')" onmouseenter="startHoverSlide(this, 'n17')" onmouseleave="stopHoverSlide(this, 'n17')">
+    <div class="badge-status">Vendue</div>
+    <img src="https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreibkl4w7wh2jplnbepz5mczblb3mziwlfxe4j3x35gt3jhspxwuasu" class="gallery-img">
+    <div class="overlay-info">
+        <span class="font-amour text-3xl text-[#f6e27a] mb-1">Aube Sereine</span>
+        <h3 class="font-luxe text-white uppercase text-lg tracking-widest border-b border-[#d4af37] pb-2 mb-2 w-max">Mousseline Pur</h3>
+    </div>
+</div>
+
+<!-- n18 - DENTELLE TAFFETAS (SURVOL) -->
+<div class="gallery-item normal group" data-category="princesse accessoires" onclick="openModal('n18')" onmouseenter="startHoverSlide(this, 'n18')" onmouseleave="stopHoverSlide(this, 'n18')">
+    <div class="badge-status">Voile & Détails</div>
+    <img src="https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreicxldduym5owm5g3nmhpisnwvai672bhj255gyyjfycr3sbez4wm4" class="gallery-img">
+    <div class="overlay-info">
+        <span class="font-amour text-3xl text-[#f6e27a] mb-1">Majesté</span>
+        <h3 class="font-luxe text-white uppercase text-lg tracking-widest border-b border-[#d4af37] pb-2 mb-2 w-max">Dentelle & Taffetas</h3>
+    </div>
+</div>
+
+<!-- n19 - AZURE CELESTE (SURVOL) -->
+<div class="gallery-item normal group" data-category="princesse accessoires" onclick="openModal('n19')" onmouseenter="startHoverSlide(this, 'n19')" onmouseleave="stopHoverSlide(this, 'n19')">
+    <div class="badge-status">Princesse</div>
+    <img src="https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreih7zsr3biduat65vmn4rcqotrdx5247wfvybjgtzktmxaod3ytpfa" class="gallery-img">
+    <div class="overlay-info">
+        <span class="font-amour text-3xl text-[#f6e27a] mb-1">Azure Céleste</span>
+        <h3 class="font-luxe text-white uppercase text-lg tracking-widest border-b border-[#d4af37] pb-2 mb-2 w-max">Tulle Dentelle</h3>
+    </div>
+</div>
+
+<!-- n20 - NACRE (SURVOL) -->
+<div class="gallery-item normal group" data-category="princesse accessoires" onclick="openModal('n20')" onmouseenter="startHoverSlide(this, 'n20')" onmouseleave="stopHoverSlide(this, 'n20')">
+    <div class="badge-status">Nouveauté</div>
+    <img src="https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreiffa4l5sv5igbsrj4smzxoicyg6ae5a4gkvvyvxv3pzie6aftd3fa" class="gallery-img">
+    <div class="overlay-info">
+        <span class="font-amour text-3xl text-[#f6e27a] mb-1">Nacre & Satin</span>
+        <h3 class="font-luxe text-white uppercase text-lg tracking-widest border-b border-[#d4af37] pb-2 mb-2 w-max">Guipure Perlée</h3>
+    </div>
+</div>
+
+
+
+
 
     </div>
 
@@ -346,16 +873,20 @@
         
         <div class="modal-content-grid">
             <!-- GAUCHE : VISUEL IMMERSIF -->
-            <div class="bg-gray-100 relative h-[50vh] md:h-full">
-                <img id="modal-img" src="" class="w-full h-full object-cover" alt="Detail Robe">
-                <div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-black/50 to-transparent"></div>
+            <!-- GAUCHE : VISUEL IMMERSIF -->
+            <div class="bg-[#faf9f6] relative h-full overflow-hidden flex items-center justify-center">
+               
+                   
+                 <!-- AJOUT DU WRAPPER DE ZOOM ICI -->
+                <div class="modal-image-container" id="zoom-container">
+                    <img id="modal-img" src="" class="w-full h-full" alt="Detail Robe">
+                </div>
             </div>
 
             <!-- DROITE : CONTENU STORYTELLING -->
-            <div class="p-10 md:p-20 flex flex-col justify-center bg-[#faf9f6]">
-                <div class="mb-6">
-                    <span id="modal-badge" class="bg-[#d4af37] text-white px-3 py-1 text-[10px] uppercase tracking-widest font-bold rounded-sm">Disponible</span>
-                </div>
+            <!-- CHANGEMENT DE LA CLASSE ICI (modal-right-content) -->
+            <div class="modal-right-content bg-[#faf9f6]">
+                
                 
                 <h2 id="modal-title" class="font-amour text-6xl md:text-7xl gold-static mb-2 leading-none">Titre Robe</h2>
                 <h3 id="modal-subtitle" class="font-luxe text-xl uppercase tracking-[0.2em] text-gray-800 mb-8 border-b border-gray-300 pb-4">Marque & Année</h3>
@@ -384,14 +915,22 @@
                 </div>
 
                 <div class="space-y-4">
-                    <a href="https://wa.me/33613342900" target="_blank" class="block w-full text-center py-4 bg-[#1a1a1a] text-[#f6e27a] uppercase tracking-widest font-bold text-sm hover:bg-gold-luxe hover:text-black transition shadow-lg">
+                    <a href="https://wa.me/33613342900" target="_blank" 
+                    class="block w-full text-center py-4 bg-[#1a1a1a] text-[#f6e27a] uppercase tracking-widest font-bold text-sm transition-all duration-300 shadow-lg btn-contact">
                         Je suis intéressée
                     </a>
                     <p class="text-center text-[10px] text-gray-400 uppercase tracking-widest">Essayage privé sur rendez-vous uniquement</p>
+                    <div class="flex justify-center mt-10 pb-4">
+                    <span id="modal-badge" class="badge-gold-prestige px-8 py-2.5 text-[12px] uppercase tracking-[0.3em] font-bold rounded-full shadow-lg">
+                        Disponible
+                    </span>
+                
+                
                 </div>
             </div>
         </div>
     </div>
+</div>
 
 
 <!-- FOOTER (Original Restauré) -->
@@ -462,21 +1001,21 @@
             'item1': {
                 title: "La Majestueuse",
                 subtitle: "Pronovias • Personnalisation",
-                img: "https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreibxu4vwq3ji433w7gqoifcmqxqkptyhtvvess22s5jfqqsdkxokju",
+                imgs: ["https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreibxu4vwq3ji433w7gqoifcmqxqkptyhtvvess22s5jfqqsdkxokju"],
                 // Mention : Ajustement sur mesure d'une robe existante
                 desc: "Cette pièce iconique de chez Pronovias a été entièrement retravaillée pour une cliente souhaitant conserver le volume 'Princesse' tout en adaptant le bustier à sa morphologie précise. Le travail a consisté à reprendre chaque baleine pour un confort absolu. Une preuve qu'une robe de grande marque peut devenir VOTRE robe unique.",
                 fabric: "Mikado de Soie",
                 size: "38 (Ajustable)",
                 condition: "Restaurée - Parfait état",
                 price: "1 200€ (Neuf: 2 800€)",
-                status: "Disponible"
+                status: "Vendue"
             },
             
             // ITEM 2 : L'HÉRITAGE
             'item2': {
                 title: "L'Héritage",
                 subtitle: "Transformation sur Demande",
-                img: "https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreigwsj55ni6jhp4ybynsrp3ysliet7s2z2iuq26ycm36h5ldt27zhi",
+                imgs: ["https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreigwsj55ni6jhp4ybynsrp3ysliet7s2z2iuq26ycm36h5ldt27zhi"],
                 // Mention : La cliente a apporté sa robe
                 desc: "Ce projet est né d'une demande émouvante : 'Je veux porter la robe de ma mère, mais en version moderne'. Nous avons déconstruit le modèle des années 80 pour ne garder que la dentelle précieuse, redessiné le patronage et créé une silhouette contemporaine. Une création sur-mesure chargée d'histoire.",
                 fabric: "Guipure Coton & Tulle",
@@ -489,14 +1028,14 @@
             // ITEM 3 : (Lien atelier - pas de modale)
             'item3': {
                 title: "Esprit Sauvage",
-                img: "https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreiejikcft5pyblouh46zyp62erop5o3ewuh4zml3ahqehgb4c4a2fa",
+                imgs: ["https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreiejikcft5pyblouh46zyp62erop5o3ewuh4zml3ahqehgb4c4a2fa"],
             },
 
             // ITEM 4 : DOS NU PERLÉ
             'item4': {
                 title: "Dos Nu Perlé",
                 subtitle: "Cymbeline • Ajustement Couture",
-                img: "https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreihp3jmnpm4wzupxc5r2mnimrotmjvpy6pdjnq6y25hjpgrmy6qxhq",
+                imgs: ["https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreihp3jmnpm4wzupxc5r2mnimrotmjvpy6pdjnq6y25hjpgrmy6qxhq"],
                 // Mention : Retouche technique
                 desc: "Le défi technique sur cette robe Cymbeline était d'adapter le dos nu vertigineux sans que la robe ne bâille. Grâce à un travail de pince invisible et de patronage précis, la robe épouse désormais parfaitement la cambrure de la cliente. Un exemple de notre savoir-faire technique.",
                 fabric: "Satin Duchesse",
@@ -510,62 +1049,334 @@
             'item5': {
                 title: "Voile Cathédrale",
                 subtitle: "Création Atelier Sur Mesure",
-                img: "https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreidnmixh5bfb2h6ym4thfuvpqwltbyfeiovkl5q6mu6hmnmzui2gq4",
+                imgs: ["https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreidnmixh5bfb2h6ym4thfuvpqwltbyfeiovkl5q6mu6hmnmzui2gq4"],
                 // Mention : Création totale
                 desc: "Création réalisée intégralement à l'atelier. La future mariée souhaitait une longueur spécifique (3 mètres) introuvable dans le commerce classique. Nous avons sélectionné ensemble le tulle 'illusion' et la dentelle de Calais pour créer cette pièce unique qui correspond exactement à ses attentes.",
                 fabric: "Tulle Illusion",
                 size: "300cm (Sur commande)",
                 condition: "Neuf (Création)",
                 price: "180€",
-                status: "Disponible"
+                status: "Projet Client"
             },
 
             // ITEM 6 : MOUSSELINE (Ici on parle de la couleur !)
             'item6': {
                 title: "Mousseline de Soie",
                 subtitle: "Création Originale",
-                img: "https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreidpbj5cexek4t6qhn5pbai7rgsxnoalozkbt2hpj6u24kqczlpdqq",
+                imgs: ["https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreidpbj5cexek4t6qhn5pbai7rgsxnoalozkbt2hpj6u24kqczlpdqq"],
                 // Mention : Couleur spécifique demandée par la cliente
                 desc: "Illustration parfaite du 'Sur-Mesure'. Cette cliente désirait sortir du blanc traditionnel. Après avoir validé ensemble les échantillons, nous avons confectionné cette sur-jupe en mousseline de soie teinte sur demande. Que vous rêviez de bleu, de jaune ou de rose poudré, tout part de votre imagination.",
                 fabric: "Soie 100%",
                 size: "Création Unique",
                 condition: "Création",
                 price: "Sur Devis",
-                status: "Disponible"
+                status: "Projet Client"
             },
 
             // ITEM 7 : AJOUT
             'item7': {
-                title: "Nom de la Robe",
-                subtitle: "Création ou Restauration",
-                img: "https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreihtocbo7yqq3d4sjj6o524qikmctnp36kq43roihr5hkvwx7mxjzi",
-                desc: "Chaque détail de cette robe a été pensé selon le cahier des charges de la cliente. Du choix des boutons nacrés jusqu'à la profondeur du décolleté, c'est un processus de co-création totale entre vos envies et mes aiguilles.",
-                fabric: "Soie sauvage",
-                size: "38/40",
-                condition: "Excellent état",
-                price: "850€",
-                status: "Disponible"
-            } 
+                title: "L'Absolu",
+                subtitle: "Signature Maryse • 2025",
+                desc: "Une pièce qui incarne le savoir-faire de l'atelier. Cette création sur-mesure met en lumière la délicatesse des boutons nacrés et la pureté de la soie sauvage pour une silhouette d'une élégance absolue.",
+                fabric: "Soie sauvage & Nacre",
+                size: "Sur-Mesure",
+                condition: "Pièce d'Exception",
+                price: "Sur Devis",
+                status: "Archive Maryse",
+                imgs: ["https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreihtocbo7yqq3d4sjj6o524qikmctnp36kq43roihr5hkvwx7mxjzi"]
+            },
+
+            'n1': { title: "Douceur de Calais", subtitle: "Collection Princesse", desc: "La quintessence du romantisme avec cette dentelle de Calais travaillée sur un tulle aérien.", fabric: "Dentelle & Tulle", size: "38-40", condition: "Neuf", price: "950€", status: "Héritage", imgs: ["https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreiasj3am76bjd7qxzzng3572z46hpwetjmebt4ode3rmrckhioyviq"] },
+    
+    'n2': { title: "Éclat Ruby", subtitle: "Taffetas Ruby", desc: "Une robe de mariée bicolore audacieuse, mariant le blanc pur et un rouge ruby profond.", fabric: "Taffetas Royal", size: "38", condition: "Création Unique", price: "Sur Devis", status: "Prestige", 
+        imgs: [
+            "https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreigy4linssxcux64idodtm7ekdr3g52sqtjfzmcug6zrlq3yitfyta",
+            "https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreihq4elgpjwabedck36kce4me62mku7ennvwrh4fsmdngjhvom2s6i",
+            "https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreiaqzovb7qtlyr6pvndddbiao4xgrcm3ehjdtopmuutbet5qdwblau",
+            "https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreibsc2ghl3gltwqncizv7lkx54dehkedafonl235l7qqojkp4hxwai",
+            "https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreib4ronl3k3cckliq72f54flwgf7zxaqulxvpczhg4oifpqskub5t4",
+            "https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreiazglp2gllrqt5cbaqfzixmrci24t5hhc7i2vib5gfzxr5ubs6vhe"
+        ]
+    },
+    
+    'n3': { imgs: ["https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreiahhohjmblmqqu5ekacoicnjyat35iy3boqsy2puq2hmcb6dec4lu", "https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreicrcf7hhohw5clqpgk4n5p65uilb2ksncwbfkpat6qjvbkejyrhbu", "https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreia4amrpvr3r3qarzi7nkyor3q6qpf6uuxoabahhafx5pv76hr2bzq"] },
+    'n4': {
+        title: "Satin Impérial",
+        subtitle: "Satin Duchesse Royal",
+        desc: "Le tombé lourd et majestueux du satin duchesse pour cette robe digne des plus grandes cérémonies. Un classique intemporel retravaillé pour une brillance subtile.",
+        fabric: "Satin Duchesse",
+        size: "38-40",
+        condition: "Neuf",
+        price: "890€",
+        status: "Rare",
+        imgs: ["https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreihiuufm2fr6hosthd5u4wzkazi7pxsvyxm5mc3tlha62sztznzrqu"]
+    },
+
+    'n6': { 
+        title: "Drappé de Soie", subtitle: "Taffetas Plissé", desc: "Travail technique de plissage sur taffetas de soie.", fabric: "Taffetas", size: "Unique", condition: "Vendue", price: "Sur Devis", status: "Disponible",
+        imgs: ["https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreifuhsb7z473zvg2a2b5qx4xuiqdmleto44bowafiqjz5t6h2afmpy", "https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreidd7q6osjpltmmsj2ob7nsdun3q5gpllcuxt7ipvx7jjpf2qjinhm", "https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreig2xscn3kwangpjnmdjhnm2ihcewx2272zlplskpk6sqc6asfjxpm"]
+    },
+    'n10': { title: "La Jupette", subtitle: "Vintage Remastered", desc: "Transformation d'une pièce ancienne en jupe courte moderne.", fabric: "Satin & Dentelle", size: "Unique", condition: "Neuf", price: "450€", status: "Disponible", imgs: ["https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreieeywnhfdaio3kyeheulrdfoe3ikiwu7x5zeo6nlbnufhd6atutom"] },
+    'n11': { 
+        title: "Courbes Divines", subtitle: "Sur Mesure", desc: "Modèle conçu pour sublimer les silhouettes généreuses avec confort.", fabric: "Tulle & Satin", size: "Sur Mesure", condition: "Création", price: "Sur Devis", status: "Sur Mesure",
+        imgs: ["https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreidx2pqfncrqqseubddyrtxhqv56ezc4pywii2uaelub7wow7n2exe", "https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreibbkqgq3ddljyyh4tc6teeo4njmhv5c3ymdq47rbgcnglxgvbtbeq"]
+    },
+    'n13': { 
+        title: "Éclat Saphir", subtitle: "Organza Azur", desc: "Reflets bleutés sur organza de luxe.", fabric: "Organza Taffetas", size: "38", condition: "Neuf", price: "920€", status: "Unique",
+        imgs: ["https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreidryxwmthlnuuylq4gbcjsjvavzknkkt7fwb5wtr7iawhb5m7zzey", "https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreic2yi6w5wec7tpwer7f266bs7flr3wgivq5yodr56u5ox7b7mx5ky"]
+    },
+    'n15': { 
+        title: "Brumes de Soie", subtitle: "Bohème Chic", desc: "Légèreté absolue pour un mariage champêtre.", fabric: "Tulle de Soie", size: "38", condition: "Neuf", price: "750€", status: "Bohème",
+        imgs: ["https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreiakqdptykiov2lih2g4q2abchouikyrjhgjzdlbliz4f5vsdqy7ii", "https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreigtu3lmfvgafb2hqqn3n7qiwq2alurjfjwp44v4yiivovez6wssnq", "https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreiejh56ryjkwmlukx7brznw5yjj6yzmhrujmi7g2vuza6wyw7qmylm"]
+    },
+    'n16': { 
+        title: "Douce Mousseline", subtitle: "Pureté", desc: "Fluidité et mouvement pour cette pièce épurée.", fabric: "Mousseline", size: "38", condition: "Sur Mesure", price: "680€", status: "Disponible",
+        imgs: ["https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreidqqmzu2lwv7kqoxjkg3qfh7xujci7xzrblfqxqmdnatxewril4mm", "https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreihidu5aa275mipfdrq5xwhbntsrhrtlkc3zdrmyveg5227fqxecl4"]
+    },
+    'n17': { 
+        title: "Aube Sereine", subtitle: "Mousseline Pur", desc: "Une robe d'une simplicité désarmante.", fabric: "Mousseline", size: "38", condition: "Vendue", price: "680€", status: "Disponible",
+        imgs: ["https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreibkl4w7wh2jplnbepz5mczblb3mziwlfxe4j3x35gt3jhspxwuasu", "https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreibmxyew5zttr5xsfxb7rmpej3onuktlwetlbrdnzzd7nvbvdbyjja"]
+    },
+    'n18': { 
+        title: "Majesté", subtitle: "Volume Impérial", desc: "Contraste entre la structure du taffetas et la finesse de la dentelle.", fabric: "Dentelle & Taffetas", size: "38-40", condition: "Vendue", price: "950€", status: "Disponible",
+        imgs: ["https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreicxldduym5owm5g3nmhpisnwvai672bhj255gyyjfycr3sbez4wm4", "https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreie2t3mwch4bjb2t3vcartsdxx3rcmrscnrkhwjbmb4qao47uujfwi", "https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreicyzi5nn2shzzvpoeoho34hulipwcgrmkkcvno523fgel43bl2ole"]
+    },
+    'n19': { 
+        title: "Azure Céleste", subtitle: "Princesse Azure", desc: "Une robe féérique aux reflets bleutés.", fabric: "Tulle Dentelle", size: "38", condition: "Neuf", price: "880€", status: "Projet Client",
+        imgs: ["https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreih7zsr3biduat65vmn4rcqotrdx5247wfvybjgtzktmxaod3ytpfa", "https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreica2whklixdv5srpy25leof627737eim4zasjm2nr7wycijcngq5m", "https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreibu4jsoygfi24rvi7lihy67baygoieqrhupzdrxzm3g4whbed7g3e"]
+    },
+    'n20': { 
+        title: "Nacre", subtitle: "Guipure Perlée", desc: "Le chic du satin duchesse allié à une guipure d'exception.", fabric: "Satin & Guipure", size: "38-40", condition: "Nouveauté", price: "1050€", status: "Disponible",
+        imgs: ["https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreiffa4l5sv5igbsrj4smzxoicyg6ae5a4gkvvyvxv3pzie6aftd3fa", "https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreigx43njmr3exwy4gst4mrmbvn5h4uh2ri7mc5qxylky264bokh56q"]
+    },
+
+    
+    'n21': { title: "L'Intemporelle", subtitle: "Best-Seller", desc: "Notre création phare en taffetas craquant, plébiscitée pour sa structure parfaite et son élégance intemporelle.", fabric: "Taffetas Craquant", size: "Toutes tailles", condition: "Top Vente", price: "Sur Devis", status: "Top 3", 
+        imgs: [
+            "https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreictjvjnuo7vvpz3soimxpcnd2tvsvuuifelpxekshvvybkuhh2a6y",
+            "https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreigzxtyvqbiuiwmhebuqjmtd7f65tjhq5uoz4xthfjjgs4z5an4kb4",
+            "https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreieqdx6rmcioatnod4asd2qp6743dmyzpnakh7vm6lf5a6mhrmse6q",
+            "https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreid6ocyxi2xuvzlq3jrp5drrdc5qozm4lhch56i3w4c3l44sgxszfa"
+        ]
+    },
+
+    'n22': { title: "Le Perfecto Taffetas", subtitle: "L'Audace", desc: "Un perfecto haute couture réalisé en taffetas craquant pour une mariée rock et sophistiquée.", fabric: "Taffetas Craquant", size: "36-42", condition: "Neuf", price: "290€", status: "Disponible", imgs: ["https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreiaq2r4jour7k46maavotk555flqiro42ieeclhvj5eqhhp5t7mar4", "https://bronze-traditional-smelt-189.mypinata.cloud/ipfs/bafkreiglopt3b4ktoymxc6vicprw6j7lx5lz2mooiwly3l7jv7pgqddqlq"] }
+};
+let modalSlideInterval; // Pour stocker le timer de la fiche produit
+let hoverInterval;
+function startHoverSlide(el, id) {
+    const data = products[id];
+    if (!data || data.imgs.length <= 1) return;
+    
+    let i = 0;
+    const img = el.querySelector('img');
+
+    // 1. DÉCLENCHEMENT RAPIDE (300ms) pour signaler l'interactivité
+    setTimeout(() => {
+        if (hoverInterval) { // Vérifie que la souris est toujours sur l'image
+            i = (i + 1) % data.imgs.length;
+            animateImageChange(img, data.imgs[i]);
+        }
+    }, 300); 
+
+    // 2. RYTHME DE CROISIÈRE PLUS LENT (3s) pour bien voir les détails
+    hoverInterval = setInterval(() => {
+        i = (i + 1) % data.imgs.length;
+        animateImageChange(img, data.imgs[i]);
+    }, 3000); // <-- Passage à 3 secondes
+}
+
+function stopHoverSlide(el, id) {
+    clearInterval(hoverInterval);
+    const data = products[id];
+    const img = el.querySelector('img');
+    img.src = data.imgs[0]; // Revient à la première photo
+}
+
+function startModalAutoSlide() {
+    const data = products[currentProductId];
+    clearInterval(modalSlideInterval); // On nettoie l'ancien timer s'il existe
+
+    // Si la robe a plusieurs photos, on lance le défilé toutes les 4 secondes
+    if (data.imgs && data.imgs.length > 1) {
+        modalSlideInterval = setInterval(() => {
+            nextImg(); // Appelle ta fonction existante qui change l'image
+        }, 4000);
+    }
+}
+
+    // LOGIQUE SLIDESHOW AU SURVOL
+// CONFIGURATION DU DÉFILÉ FLUIDE
+function animateImageChange(imgElement, newSrc) {
+    imgElement.classList.add('fade-out'); // On lance le fondu
+    setTimeout(() => {
+        imgElement.src = newSrc;
+        imgElement.classList.remove('fade-out'); // On réaffiche
+    }, 800); // Doit correspondre au temps du CSS
+}
+
+function startSlideshow(id, isAuto = false) {
+    const data = products[id];
+    if (!data || !data.imgs || data.imgs.length <= 1) return;
+    
+    const element = document.querySelector(`[onclick="openModal('${id}')"]`) || document.querySelector(`a[href*='event']`);
+    if (!element) return;
+    
+    const imgElement = element.querySelector('img');
+    let i = 0;
+
+    setInterval(() => {
+        i = (i + 1) % data.imgs.length;
+        animateImageChange(imgElement, data.imgs[i]);
+    }, 4000); // Change toutes les 4 secondes
+}
+
+// LANCEMENT AUTOMATIQUE AU CHARGEMENT
+document.addEventListener("DOMContentLoaded", () => {
+    startSlideshow('n3');  // Events
+    startSlideshow('n21'); // L'intemporelle
+    startAutoSlide('n12');
+    
+});
+
+
+
+// MISE A JOUR MODAL POUR NAVIGATION MULTI-PHOTOS
+let currentImgIndex = 0;
+let currentProductId = '';
+
+function openModal(id) {
+    const data = products[id];
+    if(!data) return;
+    currentProductId = id;
+    currentImgIndex = 0;
+    
+    // --- AJOUTE CES LIGNES ICI ---
+    zoomLevel = 1; // On remet le compteur à 1
+    const imgEl = document.getElementById('modal-img');
+    if(imgEl) imgEl.style.transform = 'scale(1)'; // On force l'image à taille normale
+
+    updateModalContent();
+    document.getElementById('product-modal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+    
+    // --- ET ICI ON LANCE LE DÉFILÉ AUTO SI BESOIN ---
+    startModalAutoSlide();
+}
+
+function updateModalContent() {
+    const data = products[currentProductId];
+    const imgEl = document.getElementById('modal-img');
+    
+    imgEl.src = data.imgs[currentImgIndex]; 
+    
+    // --- C'EST ICI, JUSTE EN DESSOUS ---
+    if (data.imgs.length > 1) {
+        if (!document.getElementById('modal-nav')) {
+            
+            // SUPPRIME L'ANCIEN navHTML ET COLLE CELUI-LÀ À LA PLACE :
+            const navHTML = `
+                <div id="modal-nav" class="absolute inset-x-8 top-1/2 -translate-y-1/2 flex justify-between pointer-events-none">
+                    <button onclick="prevImg()" class="modal-nav-btn" title="Précédente">
+                        <span style="margin-right: 5px;">‹</span>
+                    </button>
+                    <button onclick="nextImg()" class="modal-nav-btn" title="Suivante">
+                        <span style="margin-left: 5px;">›</span>
+                    </button>
+                </div>`;
+            
+            imgEl.parentElement.insertAdjacentHTML('beforeend', navHTML);
+        }
+    } else if (document.getElementById('modal-nav')) {
+        document.getElementById('modal-nav').remove();
+    }
+
+    document.getElementById('modal-title').innerText = data.title;
+    document.getElementById('modal-subtitle').innerText = data.subtitle;
+    document.getElementById('modal-desc').innerText = data.desc;
+    document.getElementById('modal-fabric').innerText = data.fabric;
+    document.getElementById('modal-size').innerText = data.size;
+    document.getElementById('modal-condition').innerText = data.condition;
+    document.getElementById('modal-price').innerText = data.price;
+    document.getElementById('modal-badge').innerText = data.status;
+}
+
+function nextImg() {
+    const data = products[currentProductId];
+    const imgEl = document.getElementById('modal-img');
+    if(!imgEl) return;
+
+    currentImgIndex = (currentImgIndex + 1) % data.imgs.length;
+
+    // 1. On lance la disparition (0.3s)
+    imgEl.classList.add('modal-fade-out');
+
+    setTimeout(() => {
+        // 2. On change la source
+        imgEl.src = data.imgs[currentImgIndex];
+        
+        // 3. Dès que c'est chargé, on réaffiche
+        imgEl.onload = () => {
+            imgEl.classList.remove('modal-fade-out');
         };
+    }, 300); // Temps réduit pour éviter le vide
+
+    startModalAutoSlide();
+}
+
+function prevImg() {
+    const data = products[currentProductId];
+    const imgEl = document.getElementById('modal-img');
+    if(!imgEl) return;
+
+    currentImgIndex = (currentImgIndex - 1 + data.imgs.length) % data.imgs.length;
+
+    imgEl.classList.add('modal-fade-out');
+
+    setTimeout(() => {
+        imgEl.src = data.imgs[currentImgIndex];
+        imgEl.onload = () => {
+            imgEl.classList.remove('modal-fade-out');
+        };
+    }, 300);
+
+    startModalAutoSlide();
+}
+
+        
 
         // --- FILTRE LOGIQUE ---
-        function filterGallery(category) {
-            // Active Button Style
-            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+       function filterGallery(category) {
+    // 1. Retour en haut immédiat
+    window.scrollTo(0, 0);
 
-            // Filter Items
-            const items = document.querySelectorAll('.gallery-item');
-            items.forEach(item => {
-                if (category === 'all' || item.dataset.category === category) {
-                    item.style.display = 'block';
-                    setTimeout(() => item.classList.add('visible'), 50); // Petit délai pour l'anim
-                } else {
-                    item.classList.remove('visible');
-                    setTimeout(() => item.style.display = 'none', 500);
-                }
+    // 2. Gestion des boutons
+    const activeBtn = window.event ? window.event.currentTarget : null;
+    if (activeBtn) {
+        document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+        activeBtn.classList.add('active');
+    }
+
+    // 3. Filtrage SANS DELAI pour éviter les bugs de mélange
+    const items = document.querySelectorAll('.gallery-item');
+    items.forEach(item => {
+        const rawCategories = item.dataset.category ? item.dataset.category.trim() : "";
+        const itemCategories = rawCategories.split(/\s+/);
+
+        if (category === 'all' || itemCategories.includes(category)) {
+            // Affichage immédiat pour bloquer le bug
+            item.style.display = 'block';
+            // On utilise requestAnimationFrame pour une transition fluide sans bug
+            requestAnimationFrame(() => {
+                item.classList.add('visible');
             });
+        } else {
+            // Disparition immédiate
+            item.classList.remove('visible');
+            item.style.display = 'none';
         }
+    });
+}
 
         // --- ANIMATION APPARITION SCROLL ---
         document.addEventListener("DOMContentLoaded", () => {
@@ -585,29 +1396,20 @@
         // --- MODAL LOGIQUE ---
         const modal = document.getElementById('product-modal');
         
-        function openModal(itemId) {
-            const data = products[itemId];
-            if(!data) return;
-
-            // Remplissage des données
-            document.getElementById('modal-img').src = data.img;
-            document.getElementById('modal-title').innerText = data.title;
-            document.getElementById('modal-subtitle').innerText = data.subtitle;
-            document.getElementById('modal-desc').innerText = data.desc;
-            document.getElementById('modal-fabric').innerText = data.fabric;
-            document.getElementById('modal-size').innerText = data.size;
-            document.getElementById('modal-condition').innerText = data.condition;
-            document.getElementById('modal-price').innerText = data.price;
-            document.getElementById('modal-badge').innerText = data.status;
-
-            // Ouverture
-            modal.classList.add('open');
-            document.body.style.overflow = 'hidden'; // Bloque le scroll derrière
-        }
+        
 
         function closeModal() {
             modal.classList.remove('open');
             document.body.style.overflow = 'auto';
+
+            // --- AJOUTE CES LIGNES ---
+            clearInterval(modalSlideInterval); // Arrête le défilé automatique
+            zoomLevel = 1; // Reset zoom
+            const imgEl = document.getElementById('modal-img');
+            if(imgEl) {
+                imgEl.style.transform = 'scale(1)';
+                imgEl.style.transformOrigin = 'center';
+            }
         }
 
         // Fermer si on clique en dehors du contenu (optionnel)
@@ -615,6 +1417,42 @@
              if (e.target === modal) closeModal();
         }); */
 
+
+        // GESTION DU ZOOM PAN (Suivi de souris)
+        const zoomContainer = document.getElementById('zoom-container');
+const modalImg = document.getElementById('modal-img');
+let zoomLevel = 1; // Niveau de zoom initial
+
+if(zoomContainer && modalImg) {
+    // 1. GESTION DE LA MOLETTE (Zoom)
+    zoomContainer.addEventListener('wheel', (e) => {
+        e.preventDefault(); // Empêche la page de scroller
+        
+        // Sens du scroll : e.deltaY < 0 = haut (zoom), e.deltaY > 0 = bas (dézoom)
+        const zoomSpeed = 0.2;
+        if (e.deltaY < 0) {
+            zoomLevel = Math.min(zoomLevel + zoomSpeed, 4); // Max x4
+        } else {
+            zoomLevel = Math.max(zoomLevel - zoomSpeed, 1); // Min x1
+        }
+        
+        modalImg.style.transform = `scale(${zoomLevel})`;
+    }, { passive: false });
+
+    // 2. GESTION DU MOUVEMENT (Déplacement)
+    zoomContainer.addEventListener('mousemove', (e) => {
+        if (zoomLevel > 1) { // On ne déplace que si on est zoomé
+            const { left, top, width, height } = zoomContainer.getBoundingClientRect();
+            const x = ((e.pageX - left - window.scrollX) / width) * 100;
+            const y = ((e.pageY - top - window.scrollY) / height) * 100;
+            modalImg.style.transformOrigin = `${x}% ${y}%`;
+        }
+    });
+
+    // 3. RÉINITIALISATION À LA FERMETURE
+    // Ajoute cette ligne dans ta fonction closeModal() existante :
+    // zoomLevel = 1; modalImg.style.transform = 'scale(1)';
+}
     </script>
 </body>
 </html>
