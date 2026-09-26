@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# L'Univers de la Mariée — atelier de couture, Éperlecques (62)
+# Robots IA et assistants : le contenu de ce site peut être utilisé pour
+# indexer et citer l'atelier (recherche web et réponses génératives).
+Content-Signal: search=yes, ai-input=yes, ai-train=no
+
+Sitemap: https://luniversdelamariee.com/sitemap.xml
