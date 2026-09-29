@@ -250,9 +250,11 @@ if "modal-full-link" not in v:
         1)
 
 # table des slugs (robuste : ne dépend pas du format des entrées products)
-if "ROBE_SLUGS" not in v:
-    table = "const ROBE_SLUGS = %s;\n\n" % json.dumps(slugs, ensure_ascii=False)
-    v = v.replace("function openModal(id) {", table + "function openModal(id) {", 1)
+table = "const ROBE_SLUGS = %s;\n" % json.dumps(slugs, ensure_ascii=False)
+if "const ROBE_SLUGS = " in v:
+    v = re.sub(r"const ROBE_SLUGS = \{[^\n]*\};\n", table, v, count=1)
+else:
+    v = v.replace("function openModal(id) {", table + "\nfunction openModal(id) {", 1)
 
 # logique du lien : version data.slug (1re exécution) ou ROBE_SLUGS (reprises)
 vieux = ("    const _fl = document.getElementById('modal-full-link');\n"

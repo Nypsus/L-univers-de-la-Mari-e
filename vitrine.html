@@ -693,6 +693,7 @@
         <p class="font-luxe text-gray-500 uppercase tracking-widest text-xs md:text-sm max-w-xl mx-auto leading-relaxed">
             Chaque robe a une âme. Ici, nous ne vendons pas simplement du tissu, <br>nous présentons des histoires de soie et de dentelle en attente d'un nouveau chapitre.
         </p>
+            <p class="mt-6"><a href="evenements.html" class="fiche-link">Événements &amp; mariages →</a></p>
     </header>
 
     <!-- GALERIE MASONRY -->
@@ -833,17 +834,17 @@
     <div class="overlay-info">
         <span class="font-amour text-3xl text-[#f6e27a] mb-1">L'Iconique</span>
         <h3 class="font-luxe text-white uppercase text-lg tracking-widest border-b border-[#d4af37] pb-2 mb-2 w-max">Modèle Catalogue</h3>
-    </div>
+    <a href="robes/l-iconique.html" class="fiche-link" onclick="event.stopPropagation()">Fiche complète →</a></div>
 </div>
 
 <!-- 9 - PRESTIGE CHATEAU (WIDE) -->
-<div class="gallery-item wide group" data-category="princesse" onclick="openModal('n9')">
+<div class="gallery-item wide group" data-category="princesse" onclick="window.location.href='evenements.html'">
     <div class="badge-status">Prestige</div>
     <img loading="lazy" decoding="async" alt="Femmes en robes de mariée blanches à manches en dentelle et jupes en tulle sur un escalier en pierre." src="assets/img/femmes-robes-mariee-escalier.webp" class="gallery-img">
     <div class="overlay-info">
         <span class="font-amour text-3xl text-[#f6e27a] mb-1">Vie de Château</span>
         <h3 class="font-luxe text-white uppercase text-lg tracking-widest border-b border-[#d4af37] pb-2 mb-2 w-max">L'Art du Mariage</h3>
-    </div>
+    <a href="evenements.html" class="fiche-link" onclick="event.stopPropagation()">Voir les événements →</a></div>
 </div>
 
 <!-- 14 - ATELIER REDIRECT (WIDE + GOLD POWDER) -->
@@ -1269,7 +1270,19 @@
         imgs: ["assets/img/dos-dentelle-ceinture-ruban-noir.webp"]
     },
 
-    'n6': { 
+        'n5': {
+        title: "L'Iconique",
+        subtitle: "Création d'atelier • Pièce unique",
+        imgs: ["assets/img/robe-dentelle-noire-bolero.webp"],
+        desc: "Un parti pris audacieux : la dentelle florale noire se détache en cascade sur le corsage ivoire, réhaussée d'un boléro trois-quarts et d'une ceinture de satin noir. La jupe de tulle s'ouvre en volume généreux, soulignée d'un voile de tulle noir au bas de la robe. Une pièce gothique-romantique pour une mariée qui ose — photographiée ici avec un bouquet aux cœurs sombres. Pièce unique, aujourd'hui vendue : l'atelier peut s'en inspirer pour une création sur mesure.",
+        fabric: "Dentelle florale noire & tulle",
+        size: "Sur mesure (nous consulter)",
+        condition: "Pièce unique d'atelier",
+        price: "Sur demande",
+        status: "Vendue"
+    },
+
+'n6': { 
         title: "Drappé de Soie", subtitle: "Taffetas Plissé", desc: "Travail technique de plissage sur taffetas de soie.", fabric: "Taffetas", size: "Unique", condition: "Vendue", price: "Sur Devis", status: "Disponible",
         imgs: ["assets/img/mariee-profil-satin-voile-fenetre.webp", "assets/img/robe-mariee-dentelle-ceinture-plissee-9.webp", "assets/img/robe-mariee-dentelle-ceinture-plissee-10.webp"]
     },
@@ -1402,7 +1415,7 @@ document.addEventListener("DOMContentLoaded", () => {
 let currentImgIndex = 0;
 let currentProductId = '';
 
-const ROBE_SLUGS = {"item1": "la-majestueuse", "item2": "l-heritage", "item4": "dos-nu-perle", "item5": "voile-cathedrale", "item6": "mousseline-de-soie", "item7": "l-absolu", "n1": "douceur-de-calais", "n2": "eclat-ruby", "n4": "satin-imperial", "n6": "drappe-de-soie", "n10": "la-jupette", "n11": "courbes-divines", "n13": "eclat-saphir", "n15": "brumes-de-soie", "n16": "douce-mousseline", "n17": "aube-sereine", "n18": "majeste", "n19": "azure-celeste", "n20": "nacre", "n21": "l-intemporelle", "n22": "le-perfecto-taffetas"};
+const ROBE_SLUGS = {"item1": "la-majestueuse", "item2": "l-heritage", "item4": "dos-nu-perle", "item5": "voile-cathedrale", "item6": "mousseline-de-soie", "item7": "l-absolu", "n1": "douceur-de-calais", "n2": "eclat-ruby", "n4": "satin-imperial", "n5": "l-iconique", "n6": "drappe-de-soie", "n10": "la-jupette", "n11": "courbes-divines", "n13": "eclat-saphir", "n15": "brumes-de-soie", "n16": "douce-mousseline", "n17": "aube-sereine", "n18": "majeste", "n19": "azure-celeste", "n20": "nacre", "n21": "l-intemporelle", "n22": "le-perfecto-taffetas"};
 
 function openModal(id) {
     const data = products[id];
