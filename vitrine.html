@@ -656,6 +656,12 @@
     
         .fiche-link { display:inline-block; margin-top:10px; font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:#f6e27a; border-bottom:1px solid rgba(246,226,122,.55); padding-bottom:2px; }
         .fiche-link:hover { color:#fff; border-color:#fff; }
+    
+        /* --- BOUTONS DORÉS LUXE (même or que le bouton Prendre RDV) --- */
+        .btn-luxe { background: #1a1a1a; color: #f6e27a; transition: all 0.4s ease; }
+        .btn-luxe:hover { background: linear-gradient(135deg, #b8860b, #f6e27a, #b8860b) !important; color: #000 !important; border-color: #fff !important; box-shadow: 0 0 20px rgba(212,175,55,0.5); }
+        .btn-luxe-outline { border: 1px solid #d4af37; color: #d4af37; transition: all 0.4s ease; background: transparent; }
+        .btn-luxe-outline:hover { background: linear-gradient(135deg, #b8860b, #f6e27a, #b8860b) !important; color: #000 !important; border-color: #fff !important; box-shadow: 0 0 20px rgba(212,175,55,0.5); }
     </style>
     <script type="application/ld+json">
     {
@@ -693,7 +699,7 @@
         <p class="font-luxe text-gray-500 uppercase tracking-widest text-xs md:text-sm max-w-xl mx-auto leading-relaxed">
             Chaque robe a une âme. Ici, nous ne vendons pas simplement du tissu, <br>nous présentons des histoires de soie et de dentelle en attente d'un nouveau chapitre.
         </p>
-            <p class="mt-6"><a href="evenements.html" class="fiche-link">Événements &amp; mariages →</a></p>
+            <p class="mt-6"><a href="evenements.html" class="fiche-link">Événements &amp; mariages →</a> &nbsp;·&nbsp; <a href="boutique.html" class="fiche-link">Boutique →</a></p>
     </header>
 
     <!-- GALERIE MASONRY -->
@@ -1070,7 +1076,7 @@
                     class="block w-full text-center py-4 bg-[#1a1a1a] text-[#f6e27a] uppercase tracking-widest font-bold text-sm transition-all duration-300 shadow-lg btn-contact">
                         Je suis intéressée
                     </a>
-                    <a id="modal-full-link" href="#" class="block w-full text-center py-3 mt-3 border border-[#d4af37] text-[#d4af37] uppercase tracking-widest font-bold text-xs hover:bg-[#d4af37] hover:text-[#1a1a1a] transition-colors">Voir la fiche complète</a>
+                    <a id="modal-full-link" href="#" class="btn-luxe-outline block w-full text-center py-3 mt-3 uppercase tracking-widest font-bold text-xs">Voir la fiche complète</a>
                     <p class="text-center text-[10px] text-gray-400 uppercase tracking-widest mt-3">Essayage privé sur rendez-vous uniquement</p>
                     <div class="flex justify-center mt-10 pb-4">
                     <span id="modal-badge" class="badge-gold-prestige px-8 py-2.5 text-[12px] uppercase tracking-[0.3em] font-bold rounded-full shadow-lg">

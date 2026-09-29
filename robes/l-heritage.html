@@ -651,6 +651,12 @@
         .fiche-link { display:inline-block; margin-top:10px; font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:#f6e27a; border-bottom:1px solid rgba(246,226,122,.55); padding-bottom:2px; }
         .fiche-link:hover { color:#fff; border-color:#fff; }
     
+        /* --- BOUTONS DORÉS LUXE (même or que le bouton Prendre RDV) --- */
+        .btn-luxe { background: #1a1a1a; color: #f6e27a; transition: all 0.4s ease; }
+        .btn-luxe:hover { background: linear-gradient(135deg, #b8860b, #f6e27a, #b8860b) !important; color: #000 !important; border-color: #fff !important; box-shadow: 0 0 20px rgba(212,175,55,0.5); }
+        .btn-luxe-outline { border: 1px solid #d4af37; color: #d4af37; transition: all 0.4s ease; background: transparent; }
+        .btn-luxe-outline:hover { background: linear-gradient(135deg, #b8860b, #f6e27a, #b8860b) !important; color: #000 !important; border-color: #fff !important; box-shadow: 0 0 20px rgba(212,175,55,0.5); }
+    
 /* --- NAV & MENU (repris du site principal) --- */
 .menu-overlay {
             position: fixed; 
@@ -765,6 +771,7 @@
         <button onclick="toggleMenu()" class="absolute top-8 right-8 text-4xl text-[#d4af37]">&times;</button>
         <a href="../index.html" class="menu-link">Accueil</a>
         <a href="../vitrine.html" class="menu-link">Vitrine</a>
+        <a href="../boutique.html" class="menu-link">Boutique</a>
         <a href="../evenements.html" class="menu-link">Événements &amp; mariages</a>
         <a href="../index.html#atelier" class="menu-link">Atelier Retouche</a>
         <a href="../index.html#histoire" class="menu-link">Notre Histoire</a>
@@ -807,11 +814,11 @@
                     <div><span class="block text-xs uppercase text-[#d4af37] font-bold tracking-widest mb-1">Prix vitrine</span><span class="font-luxe text-lg">Sur Devis</span></div>
                 </div>
                 <a href="https://wa.me/33613342900?text=Bonjour%20Maryse%2C%20je%20suis%20int%C3%A9ress%C3%A9e%20par%20la%20robe%20%C2%AB%20L%27H%C3%A9ritage%20%C2%BB%20vue%20sur%20votre%20site." target="_blank" rel="noopener"
-                   class="block w-full text-center py-4 bg-[#1a1a1a] text-[#f6e27a] uppercase tracking-widest font-bold text-sm transition-all duration-300 hover:bg-[#d4af37] hover:text-[#1a1a1a]">
+                   class="btn-luxe block w-full text-center py-4 uppercase tracking-widest font-bold text-sm">
                     Réserver un essayage
                 </a>
                 <p class="text-center text-[10px] text-gray-400 uppercase tracking-widest mt-3">Essayage privé sur rendez-vous uniquement · Showroom à Moulle (62910)</p>
-                <a href="../vitrine.html" class="block w-full text-center py-3 mt-4 border border-[#d4af37] text-[#d4af37] uppercase tracking-widest font-bold text-xs hover:bg-[#d4af37] hover:text-[#1a1a1a] transition-colors">
+                <a href="../vitrine.html" class="btn-luxe-outline block w-full text-center py-3 mt-4 uppercase tracking-widest font-bold text-xs">
                     ← Retour à la galerie
                 </a>
             </div>

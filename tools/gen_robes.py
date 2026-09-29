@@ -109,6 +109,7 @@ NAV_TPL = u"""    <!-- NAV (identique au site principal) -->
         <button onclick="toggleMenu()" class="absolute top-8 right-8 text-4xl text-[#d4af37]">&times;</button>
         <a href="index.html" class="menu-link">Accueil</a>
         <a href="vitrine.html" class="menu-link">Vitrine</a>
+        <a href="boutique.html" class="menu-link">Boutique</a>
         <a href="evenements.html" class="menu-link">\u00c9v\u00e9nements &amp; mariages</a>
         <a href="index.html#atelier" class="menu-link">Atelier Retouche</a>
         <a href="index.html#histoire" class="menu-link">Notre Histoire</a>
@@ -127,7 +128,7 @@ NAV_TPL = u"""    <!-- NAV (identique au site principal) -->
     </script>
 
 """
-nav = NAV_TPL.replace('href="index.html', 'href="../index.html').replace('href="vitrine.html', 'href="../vitrine.html').replace('href="evenements.html', 'href="../evenements.html')
+nav = NAV_TPL.replace('href="index.html', 'href="../index.html').replace('href="vitrine.html', 'href="../vitrine.html').replace('href="boutique.html', 'href="../boutique.html').replace('href="evenements.html', 'href="../evenements.html')
 
 # --- 3. Slugs uniques ---
 slugs = {}
@@ -263,11 +264,11 @@ for k, p in produits.items():
                     <div><span class="block text-xs uppercase text-[#d4af37] font-bold tracking-widest mb-1">Prix vitrine</span><span class="font-luxe text-lg">{prix}</span></div>
                 </div>
                 <a href="{wa}" target="_blank" rel="noopener"
-                   class="block w-full text-center py-4 bg-[#1a1a1a] text-[#f6e27a] uppercase tracking-widest font-bold text-sm transition-all duration-300 hover:bg-[#d4af37] hover:text-[#1a1a1a]">
+                   class="btn-luxe block w-full text-center py-4 uppercase tracking-widest font-bold text-sm">
                     R\u00e9server un essayage
                 </a>
                 <p class="text-center text-[10px] text-gray-400 uppercase tracking-widest mt-3">Essayage priv\u00e9 sur rendez-vous uniquement \u00b7 Showroom \u00e0 Moulle (62910)</p>
-                <a href="../vitrine.html" class="block w-full text-center py-3 mt-4 border border-[#d4af37] text-[#d4af37] uppercase tracking-widest font-bold text-xs hover:bg-[#d4af37] hover:text-[#1a1a1a] transition-colors">
+                <a href="../vitrine.html" class="btn-luxe-outline block w-full text-center py-3 mt-4 uppercase tracking-widest font-bold text-xs">
                     \u2190 Retour \u00e0 la galerie
                 </a>
             </div>

@@ -102,4 +102,8 @@
     <loc>https://luniversdelamariee.com/evenements.html</loc>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://luniversdelamariee.com/boutique.html</loc>
+    <priority>0.8</priority>
+  </url>
 </urlset>
