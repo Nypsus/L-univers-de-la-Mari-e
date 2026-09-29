@@ -1,0 +1,3 @@
+*.tmp
+tools/.sales_notify.log
+tools/.sales_state.json
