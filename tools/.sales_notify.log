@@ -1,0 +1,4 @@
+2026-09-29 17:22:57 erreur API 403 {
+  "error": {
+    "code": "more_permissions_required",
+    "message": "Permission denied. The provided key 'rk_live_...cTFF' does not have the required permissions for this endpoint on account 'acct_
