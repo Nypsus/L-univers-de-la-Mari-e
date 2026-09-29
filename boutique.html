@@ -972,12 +972,14 @@
                         <p class="font-luxe text-[10px] uppercase tracking-widest text-gray-400 mb-2">${a.cat || ''}</p>
                         <p class="font-amour text-2xl gold-static mb-3">${a.nom}</p>
                         <p class="font-luxe text-lg mb-5">${a.prix}</p>
-                        <a href="${a.lien}" target="_blank" rel="noopener" class="btn-luxe block w-full text-center py-3 uppercase tracking-widest font-bold text-xs">Acheter</a>
+                        <button onclick="LumPanier.ajouter('${k}')" class="btn-luxe block w-full text-center py-3 uppercase tracking-widest font-bold text-xs">Ajouter au panier</button>
+                        <a href="${a.lien}" target="_blank" rel="noopener" class="block w-full text-center py-2 mt-2 text-[10px] uppercase tracking-widest text-gray-400 hover:text-[#d4af37] transition">Acheter maintenant</a>
                     </div>
                 </div>`;
             }).join('');
         }
         renderArticles();
     </script>
+    <script src="assets/js/panier.js"></script>
 </body>
 </html>

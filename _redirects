@@ -1,0 +1,2 @@
+# Panier boutique -> fonction Netlify
+/api/*  /.netlify/functions/:splat  200

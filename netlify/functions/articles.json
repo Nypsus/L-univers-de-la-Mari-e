@@ -1,0 +1,32 @@
+{
+  "collier-rosace": {
+    "price": "price_1UL2LUDxt4WMwN8eC1kHkCWd",
+    "nom": "Collier « Rosace »",
+    "prix_eur": 45
+  },
+  "applique-rebrodee": {
+    "price": "price_1UL2LXDxt4WMwN8eMkp3qcH5",
+    "nom": "Applique « Rebrodée »",
+    "prix_eur": 28
+  },
+  "ceinture-ruban-noir": {
+    "price": "price_1UL2LYDxt4WMwN8eDSw0GrWd",
+    "nom": "Ceinture « Ruban Noir »",
+    "prix_eur": 55
+  },
+  "ceinture-plisse-ivoire": {
+    "price": "price_1UL2LaDxt4WMwN8ehMf6BeiN",
+    "nom": "Ceinture « Plissé Ivoire »",
+    "prix_eur": 65
+  },
+  "voilette-brume": {
+    "price": "price_1UL2LcDxt4WMwN8e05USep3L",
+    "nom": "Voilette « Brume »",
+    "prix_eur": 40
+  },
+  "ceinture-eclat": {
+    "price": "price_1UL2LdDxt4WMwN8eovKXzVWJ",
+    "nom": "Ceinture « Éclat »",
+    "prix_eur": 50
+  }
+}
