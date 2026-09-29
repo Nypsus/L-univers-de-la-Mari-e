@@ -266,7 +266,7 @@ elif "modal-full-link" in v and "ROBE_SLUGS[currentProductId]" not in v:
         "document.getElementById('modal-badge').innerText = data.status;",
         "document.getElementById('modal-badge').innerText = data.status;\n" + nouveau, 1)
 
-# 6c. lien discret sur chaque carte
+# 6c. lien discret sur chaque carte (à la fin du contenu d'overlay-info)
 def ajoute_lien_carte(m):
     key = m.group(1)
     if key not in slugs:
@@ -274,9 +274,10 @@ def ajoute_lien_carte(m):
     bloc_carte = m.group(0)
     if "fiche-link" in bloc_carte:
         return bloc_carte
-    return bloc_carte.replace(
-        "</div>",
-        '<a href="robes/%s.html" class="fiche-link" onclick="event.stopPropagation()">Fiche compl\u00e8te \u2192</a></div>' % slugs[key], 1)
+    lien = '<a href="robes/%s.html" class="fiche-link" onclick="event.stopPropagation()">Fiche compl\u00e8te \u2192</a>' % slugs[key]
+    return re.sub(r'(<div class="overlay-info">.*?)(</div>)',
+                  lambda mm: mm.group(1) + lien + mm.group(2),
+                  bloc_carte, count=1, flags=re.S)
 
 v = re.sub(r'onclick="openModal\(\'([^\']+)\'\)"(.*?)<div class="overlay-info">(.*?)</div>', ajoute_lien_carte, v, flags=re.S)
 
