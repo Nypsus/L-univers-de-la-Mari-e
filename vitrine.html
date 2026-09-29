@@ -662,7 +662,61 @@
         .btn-luxe:hover { background: linear-gradient(135deg, #b8860b, #f6e27a, #b8860b) !important; color: #000 !important; border-color: #fff !important; box-shadow: 0 0 20px rgba(212,175,55,0.5); }
         .btn-luxe-outline { border: 1px solid #d4af37; color: #d4af37; transition: all 0.4s ease; background: transparent; }
         .btn-luxe-outline:hover { background: linear-gradient(135deg, #b8860b, #f6e27a, #b8860b) !important; color: #000 !important; border-color: #fff !important; box-shadow: 0 0 20px rgba(212,175,55,0.5); }
-    </style>
+    
+/* --- NAV & MENU (repris du site principal) --- */
+.menu-overlay {
+            position: fixed; 
+            top: 0; left: 0; 
+            width: 85%;      /* Largeur sur mobile */
+            max-width: 400px; /* Largeur max sur desktop */
+            height: 100%;
+            background: #faf9f6; /* Fond crème */
+            z-index: 100;
+            transform: translateX(-100%); /* Part de la gauche */
+            transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start; /* Aligné à gauche */
+            padding-left: 40px;
+            box-shadow: 10px 0 40px rgba(0,0,0,0.1);
+            border-right: 2px solid #d4af37;
+        }
+.menu-overlay.open { transform: translateX(0); }
+.menu-link {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: #4a4a4a;
+            transition: all 0.3s ease;
+            margin: 15px 0;
+            position: relative;
+        }
+.menu-link:hover {
+            color: #d4af37 !important;
+            padding-left: 10px;
+        }
+.menu-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px; left: 0;
+            width: 0; height: 1px;
+            background: #d4af37;
+            transition: width 0.3s ease;
+        }
+.menu-link:hover::after { width: 100%; }
+.nav-btn-rdv {
+            border: 1px solid #d4af37;
+            color: #d4af37;
+            transition: all 0.4s ease;
+            background: transparent;
+        }
+.nav-btn-rdv:hover {
+            background: linear-gradient(135deg, #b8860b, #f6e27a, #b8860b) !important;
+            color: #000 !important;
+            border-color: #fff;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+        }
+</style>
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",

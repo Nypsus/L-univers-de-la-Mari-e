@@ -1,1 +1,56 @@
-[]
+[
+  {
+    "id": "collier-rosace",
+    "nom": "Collier « Rosace »",
+    "cat": "Collier",
+    "prix_eur": 45,
+    "photo": "assets/img/atelier-couture-main-dentelle-florale.webp",
+    "description": "Dentelle florale montée à la main sur lien satin, fermoir doré.",
+    "lien": "https://buy.stripe.com/9B68wP7xs9VgdhpemO08g02"
+  },
+  {
+    "id": "applique-rebrodee",
+    "nom": "Applique « Rebrodée »",
+    "cat": "Dentelle",
+    "prix_eur": 28,
+    "photo": "assets/img/detail-buste-robe-mariee-dentelle.webp",
+    "description": "Applique de dentelle rebrodée, à coudre ou à clipser sur une robe.",
+    "lien": "https://buy.stripe.com/aFa00j6to4AWelt6Um08g03"
+  },
+  {
+    "id": "ceinture-ruban-noir",
+    "nom": "Ceinture « Ruban Noir »",
+    "cat": "Ceinture",
+    "prix_eur": 55,
+    "photo": "assets/img/dos-dentelle-ceinture-ruban-noir.webp",
+    "description": "Ruban de satin noir noué sur dentelle ivoire.",
+    "lien": "https://buy.stripe.com/6oUaEXdVQffAelt1A208g04"
+  },
+  {
+    "id": "ceinture-plisse-ivoire",
+    "nom": "Ceinture « Plissé Ivoire »",
+    "cat": "Ceinture",
+    "prix_eur": 65,
+    "photo": "assets/img/robe-mariee-dentelle-ceinture-plissee-7.webp",
+    "description": "Plissé de tulle ivoire, fermeture par boutons pression.",
+    "lien": "https://buy.stripe.com/4gMcN5050d7s6T11A208g05"
+  },
+  {
+    "id": "voilette-brume",
+    "nom": "Voilette « Brume »",
+    "cat": "Voilette",
+    "prix_eur": 40,
+    "photo": "assets/img/robe-mariee-courte-dentelle-essayage.webp",
+    "description": "Voilette de tulle brodé, peigne doré.",
+    "lien": "https://buy.stripe.com/9B6dR96to5F0a5dfqS08g06"
+  },
+  {
+    "id": "ceinture-eclat",
+    "nom": "Ceinture « Éclat »",
+    "cat": "Ceinture",
+    "prix_eur": 50,
+    "photo": "assets/img/mariee-profil-satin-voile-fenetre.webp",
+    "description": "Ceinture dorée fine pour marquer la taille, sur satin ou dentelle.",
+    "lien": "https://buy.stripe.com/bJe5kDdVQc3o4KT2E608g07"
+  }
+]

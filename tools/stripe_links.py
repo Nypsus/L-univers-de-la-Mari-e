@@ -70,7 +70,7 @@ def main():
             "line_items[0][price]": prix["id"],
             "line_items[0][quantity]": 1,
             "after_completion[type]": "hosted_confirmation",
-            "after_completion[hosted_confirmation][custom_message]": "Merci ! Votre commande part de l'atelier sous 3 à 5 jours ouvrés.",
+            "after_completion[hosted_confirmation][custom_message]": "Merci ! Maryse vous contacte pour confirmer votre pi\u00e8ce et son envoi.",
             "custom_text[submit][message]": "Livraison offerte en France métropolitaine. Pièce faite main à l'atelier.",
             "metadata[ref]": ref,
         })
