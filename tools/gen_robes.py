@@ -71,6 +71,64 @@ print("produits parsés :", len(produits))
 sty = vitrine[vitrine.find("<style>"): vitrine.find("</style>") + len("</style>")]
 foot = vitrine[vitrine.find("<footer"): vitrine.find("</footer>") + len("</footer>")]
 
+# --- 2b. Nav du site (hamburger + menu latéral + bouton RDV), reprise de index.html ---
+idx = lire("index.html")
+sty_idx = idx[idx.find("<style>"): idx.find("</style>")]
+if ".menu-overlay {" not in sty:
+    css_nav = ""
+    for pat in [r"\.menu-overlay \{[^}]*\}", r"\.menu-overlay\.open \{[^}]*\}", r"\.menu-link \{[^}]*\}",
+                r"\.menu-link:hover \{[^}]*\}", r"\.menu-link::after \{[^}]*\}", r"\.menu-link:hover::after \{[^}]*\}",
+                r"\.nav-btn-rdv \{[^}]*\}", r"\.nav-btn-rdv:hover \{[^}]*\}"]:
+        m = re.search(pat, sty_idx)
+        if m:
+            css_nav += m.group(0) + "\n"
+    sty = sty.replace("</style>", "\n/* --- NAV & MENU (repris du site principal) --- */\n" + css_nav + "</style>", 1)
+
+NAV_TPL = u"""    <!-- NAV (identique au site principal) -->
+    <nav class="fixed top-0 w-full z-50 flex justify-between items-center px-6 py-4 bg-white/95 shadow-md transition duration-300" id="navbar">
+        <button onclick="toggleMenu()" class="flex items-center gap-2 text-[#4a4a4a] hover:text-[#d4af37] transition z-50">
+            <div class="space-y-1.5 cursor-pointer group">
+                <span class="block w-8 h-0.5 bg-current transition group-hover:w-6"></span>
+                <span class="block w-6 h-0.5 bg-current transition group-hover:w-8"></span>
+                <span class="block w-4 h-0.5 bg-current transition group-hover:w-6"></span>
+            </div>
+            <span class="uppercase font-luxe text-sm tracking-widest hidden md:block">Menu</span>
+        </button>
+
+        <a href="index.html" class="font-amour text-2xl md:text-4xl gold-text drop-shadow-sm z-40 relative">
+            L'Univers de la Mari\u00e9e
+        </a>
+
+        <a href="index.html#contact" class="hidden md:inline-block px-6 py-2 rounded-full text-xs uppercase tracking-widest font-luxe z-50 nav-btn-rdv">
+            Prendre RDV
+        </a>
+    </nav>
+
+    <!-- MENU OVERLAY -->
+    <div id="full-menu" class="menu-overlay">
+        <button onclick="toggleMenu()" class="absolute top-8 right-8 text-4xl text-[#d4af37]">&times;</button>
+        <a href="index.html" class="menu-link">Accueil</a>
+        <a href="vitrine.html" class="menu-link">Vitrine</a>
+        <a href="evenements.html" class="menu-link">\u00c9v\u00e9nements &amp; mariages</a>
+        <a href="index.html#atelier" class="menu-link">Atelier Retouche</a>
+        <a href="index.html#histoire" class="menu-link">Notre Histoire</a>
+        <div class="mt-12">
+            <p class="font-amour text-2xl gold-static">Maryse, votre cr\u00e9atrice</p>
+            <div class="w-12 h-0.5 bg-gold-luxe mt-2"></div>
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('full-menu');
+            menu.classList.toggle('open');
+            document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : 'auto';
+        }
+    </script>
+
+"""
+nav = NAV_TPL.replace('href="index.html', 'href="../index.html').replace('href="vitrine.html', 'href="../vitrine.html').replace('href="evenements.html', 'href="../evenements.html')
+
 # --- 3. Slugs uniques ---
 slugs = {}
 vus = set()
@@ -180,6 +238,7 @@ for k, p in produits.items():
 </head>
 <body>
 
+{nav}
     <a href="../vitrine.html" class="nav-back-home">
         <i data-feather="arrow-left" style="width:16px;"></i> Galerie
     </a>
@@ -224,7 +283,7 @@ for k, p in produits.items():
         titre=titre, sous=sous, sous_t=(" \u2014 " + marque if marque else ""), desc=desc, desc_meta=desc_meta,
         base=BASE, slug=s, og_img=og_img, sty=sty, ld=json.dumps(prod_ld, ensure_ascii=False, indent=2),
         badge=badge, imgs_html=imgs_html, fabric=p.get("fabric", ""), taille=p.get("size", ""),
-        etat=p.get("condition", ""), prix=prix_html, wa=wa, foot=foot,
+        etat=p.get("condition", ""), prix=prix_html, wa=wa, foot=foot, nav=nav,
     )
     ecrire(os.path.join("robes", s + ".html"), page)
 

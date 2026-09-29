@@ -650,7 +650,61 @@
     
         .fiche-link { display:inline-block; margin-top:10px; font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:#f6e27a; border-bottom:1px solid rgba(246,226,122,.55); padding-bottom:2px; }
         .fiche-link:hover { color:#fff; border-color:#fff; }
-    </style>
+    
+/* --- NAV & MENU (repris du site principal) --- */
+.menu-overlay {
+            position: fixed; 
+            top: 0; left: 0; 
+            width: 85%;      /* Largeur sur mobile */
+            max-width: 400px; /* Largeur max sur desktop */
+            height: 100%;
+            background: #faf9f6; /* Fond crème */
+            z-index: 100;
+            transform: translateX(-100%); /* Part de la gauche */
+            transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start; /* Aligné à gauche */
+            padding-left: 40px;
+            box-shadow: 10px 0 40px rgba(0,0,0,0.1);
+            border-right: 2px solid #d4af37;
+        }
+.menu-overlay.open { transform: translateX(0); }
+.menu-link {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: #4a4a4a;
+            transition: all 0.3s ease;
+            margin: 15px 0;
+            position: relative;
+        }
+.menu-link:hover {
+            color: #d4af37 !important;
+            padding-left: 10px;
+        }
+.menu-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px; left: 0;
+            width: 0; height: 1px;
+            background: #d4af37;
+            transition: width 0.3s ease;
+        }
+.menu-link:hover::after { width: 100%; }
+.nav-btn-rdv {
+            border: 1px solid #d4af37;
+            color: #d4af37;
+            transition: all 0.4s ease;
+            background: transparent;
+        }
+.nav-btn-rdv:hover {
+            background: linear-gradient(135deg, #b8860b, #f6e27a, #b8860b) !important;
+            color: #000 !important;
+            border-color: #fff;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+        }
+</style>
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -685,6 +739,49 @@
     </script>
 </head>
 <body>
+
+    <!-- NAV (identique au site principal) -->
+    <nav class="fixed top-0 w-full z-50 flex justify-between items-center px-6 py-4 bg-white/95 shadow-md transition duration-300" id="navbar">
+        <button onclick="toggleMenu()" class="flex items-center gap-2 text-[#4a4a4a] hover:text-[#d4af37] transition z-50">
+            <div class="space-y-1.5 cursor-pointer group">
+                <span class="block w-8 h-0.5 bg-current transition group-hover:w-6"></span>
+                <span class="block w-6 h-0.5 bg-current transition group-hover:w-8"></span>
+                <span class="block w-4 h-0.5 bg-current transition group-hover:w-6"></span>
+            </div>
+            <span class="uppercase font-luxe text-sm tracking-widest hidden md:block">Menu</span>
+        </button>
+
+        <a href="../index.html" class="font-amour text-2xl md:text-4xl gold-text drop-shadow-sm z-40 relative">
+            L'Univers de la Mariée
+        </a>
+
+        <a href="../index.html#contact" class="hidden md:inline-block px-6 py-2 rounded-full text-xs uppercase tracking-widest font-luxe z-50 nav-btn-rdv">
+            Prendre RDV
+        </a>
+    </nav>
+
+    <!-- MENU OVERLAY -->
+    <div id="full-menu" class="menu-overlay">
+        <button onclick="toggleMenu()" class="absolute top-8 right-8 text-4xl text-[#d4af37]">&times;</button>
+        <a href="../index.html" class="menu-link">Accueil</a>
+        <a href="../vitrine.html" class="menu-link">Vitrine</a>
+        <a href="../evenements.html" class="menu-link">Événements &amp; mariages</a>
+        <a href="../index.html#atelier" class="menu-link">Atelier Retouche</a>
+        <a href="../index.html#histoire" class="menu-link">Notre Histoire</a>
+        <div class="mt-12">
+            <p class="font-amour text-2xl gold-static">Maryse, votre créatrice</p>
+            <div class="w-12 h-0.5 bg-gold-luxe mt-2"></div>
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('full-menu');
+            menu.classList.toggle('open');
+            document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : 'auto';
+        }
+    </script>
+
 
     <a href="../vitrine.html" class="nav-back-home">
         <i data-feather="arrow-left" style="width:16px;"></i> Galerie
