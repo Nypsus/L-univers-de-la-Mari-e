@@ -1,0 +1,14 @@
+{
+  "blocked": false,
+  "notified_at": "2026-09-30 15:13:27",
+  "checks": 7,
+  "pending_attempt": false,
+  "last_attempt": 1790779906.4087017,
+  "last_attempt_detail": "connexion non aboutie (url=https://www.etsy.com/fr/signin?dd_referrer=)",
+  "locked_notified": false,
+  "done": true,
+  "last_detail": "url=https://www.etsy.com/fr/ | titre=Etsy France - Achetez des cadeaux faits main, vintage, perso | texte=600 car | captcha=False",
+  "last_check": "2026-09-30 16:43:16",
+  "attempts_paused": true,
+  "note": "Session Etsy vivante (compte recree 30/09) - NE JAMAIS purger le profil. Veille definitive depuis 17h."
+}

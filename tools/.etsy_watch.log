@@ -1,0 +1,8 @@
+2026-09-30 14:13:28 encore bloque : url=https://www.etsy.com/fr/ | titre=etsy.com | texte=0 car | captcha=True
+2026-09-30 14:25:16 encore bloque : url=https://www.etsy.com/fr/ | titre=etsy.com | texte=0 car | captcha=True
+2026-09-30 14:43:13 encore bloque : url=https://www.etsy.com/fr/ | titre=etsy.com | texte=0 car | captcha=True
+2026-09-30 15:13:31 débloqué → notification envoyée : url=https://www.etsy.com/fr/ | titre=Etsy France - Achetez des cadeaux faits main, vintage, perso | texte=600 car | captcha=False
+2026-09-30 15:43:47 débloqué (déjà notifié, silence) : url=https://www.etsy.com/fr/ | titre=Etsy France - Achetez des cadeaux faits main, vintage, perso | texte=600 car | captcha=False
+2026-09-30 16:13:16 débloqué (déjà notifié, silence) : url=https://www.etsy.com/fr/ | titre=Etsy France - Achetez des cadeaux faits main, vintage, perso | texte=600 car | captcha=False
+2026-09-30 16:43:16 débloqué (déjà notifié, silence) : url=https://www.etsy.com/fr/ | titre=Etsy France - Achetez des cadeaux faits main, vintage, perso | texte=600 car | captcha=False
+2026-09-30 16:51:46 tentative : ok=False | connexion non aboutie (url=https://www.etsy.com/fr/signin?dd_referrer=)
