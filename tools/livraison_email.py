@@ -10,6 +10,7 @@ relire le coffre à chaque envoi (supprimer ce fichier si le mot de passe change
 Test direct :
     python tools/livraison_email.py --test adresse@exemple.fr
 """
+import ast
 import io
 import json
 import os
@@ -52,7 +53,10 @@ def _run_hsb(args):
         try:
             return json.loads(line)
         except Exception:
-            continue
+            try:
+                return ast.literal_eval(line)
+            except Exception:
+                continue
     raise RuntimeError("HSB injoignable (rc=%s)" % proc.returncode)
 
 
