@@ -40,6 +40,21 @@ def api(methode, chemin, params=None):
         print("ERREUR", chemin, e.code, e.read().decode("utf-8", "replace")[:300])
         raise
 
+def _completion(a):
+    """Parametres after_completion selon article physique ou digital."""
+    if a.get("digital"):
+        return {
+            "after_completion[type]": "redirect",
+            "after_completion[redirect][url]": a.get("apres_paiement", ""),
+            "custom_text[submit][message]": "Après paiement, vous êtes redirigé vers votre guide (imprimable en PDF).",
+        }
+    return {
+        "after_completion[type]": "hosted_confirmation",
+        "after_completion[hosted_confirmation][custom_message]": "Merci ! Maryse vous contacte pour confirmer votre pièce et son envoi.",
+        "custom_text[submit][message]": "Livraison offerte en France métropolitaine. Pièce faite main à l'atelier.",
+    }
+
+
 def produits_existants():
     r = api("GET", "products?limit=100&active=true")
     return {p.get("metadata", {}).get("ref"): p for p in r.get("data", []) if p.get("metadata", {}).get("ref")}
@@ -69,9 +84,7 @@ def main():
         pl = api("POST", "payment_links", {
             "line_items[0][price]": prix["id"],
             "line_items[0][quantity]": 1,
-            "after_completion[type]": "hosted_confirmation",
-            "after_completion[hosted_confirmation][custom_message]": "Merci ! Maryse vous contacte pour confirmer votre pi\u00e8ce et son envoi.",
-            "custom_text[submit][message]": "Livraison offerte en France métropolitaine. Pièce faite main à l'atelier.",
+            **_completion(a),
             "metadata[ref]": ref,
         })
         a["lien"] = pl["url"]
@@ -87,7 +100,7 @@ def main():
             obj[a["id"]] = {
                 "nom": a["nom"], "cat": a.get("cat", ""),
                 "prix": ("%g \u20ac" % a["prix_eur"]).replace(".", ","),
-                "photo": a.get("photo", ""), "lien": a["lien"],
+                "photo": a.get("photo", ""), "lien": a["lien"], **({"sans_panier": True} if a.get("sans_panier") else {}),
             }
     h = io.open("boutique.html", encoding="utf-8").read()
     h = re.sub(r"const ARTICLES = \{.*?\};",

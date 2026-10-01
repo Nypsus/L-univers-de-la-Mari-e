@@ -52,5 +52,17 @@
     "photo": "assets/img/mariee-profil-satin-voile-fenetre.webp",
     "description": "Ceinture dorée fine pour marquer la taille, sur satin ou dentelle.",
     "lien": "https://buy.stripe.com/bJe5kDdVQc3o4KT2E608g07"
+  },
+  {
+    "id": "guide-robe-de-mariee",
+    "nom": "Le guide de la robe de mariée",
+    "cat": "Guide",
+    "prix_eur": 9.9,
+    "photo": "assets/img/robe-mariee-dentelle-essayage.webp",
+    "description": "Le guide de l'atelier : calendrier, essayage, retouches, entretien — photos réelles, imprimable en PDF.",
+    "digital": true,
+    "sans_panier": true,
+    "apres_paiement": "https://luniversdelamariee.com/g/c421441e/",
+    "lien": "https://buy.stripe.com/3cIcN52d8c3ofpxceG08g09"
   }
 ]

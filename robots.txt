@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /g/
 
 # L'Univers de la Mariée — atelier de couture, Éperlecques (62)
 # Robots IA et assistants : le contenu de ce site peut être utilisé pour
