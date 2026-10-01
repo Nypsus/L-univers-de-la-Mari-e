@@ -1,5 +1,6 @@
 {
   "vus": [],
   "depuis": 1790611770,
-  "alerte_permission_envoyee": true
+  "alerte_permission_envoyee": true,
+  "emails": {}
 }
