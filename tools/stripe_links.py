@@ -86,6 +86,10 @@ def main():
             "line_items[0][quantity]": 1,
             **_completion(a),
             "metadata[ref]": ref,
+            # le ref est aussi posé sur le PAIEMENT lui-même : la livraison
+            # e-mail (tools/livraison_email.py) le relit dans payment_intent.metadata.ref
+            "payment_intent_data[metadata][ref]": ref,
+            "payment_intent_data[metadata][produit]": a["nom"],
         })
         a["lien"] = pl["url"]
         print("%-24s LIEN : %s" % (ref, pl["url"]))
