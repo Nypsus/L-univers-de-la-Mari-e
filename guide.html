@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Guide de la robe de mariée — signé Maryse | L'Univers de la Mariée</title>
+    <meta name="description" content="Le guide de l'atelier : calendrier réel, essayage privé, retouches, entretien et seconde vie de la robe de mariée. Écrit et signé par Maryse. 9,90 €, téléchargement immédiat.">
+    <link rel="canonical" href="https://luniversdelamariee.com/guide.html">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="theme-color" content="#141210">
+    <meta property="og:type" content="product">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:site_name" content="L'Univers de la Mariée">
+    <meta property="og:title" content="Le Guide de la robe de mariée — signé Maryse">
+    <meta property="og:description" content="Calendrier réel, essayage privé, retouches, entretien, seconde vie : le livret de l'atelier, à 9,90 €.">
+    <meta property="og:url" content="https://luniversdelamariee.com/guide.html">
+    <meta property="og:image" content="https://luniversdelamariee.com/assets/img/robe-mariee-dentelle-essayage.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&family=Pinyon+Script&display=swap');
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #faf9f6;
+            color: #4a4a4a;
+            overflow-x: hidden;
+            margin: 0; padding: 0;
+        }
+
+        h1, h2, h3, .font-luxe { font-family: 'Cinzel', serif; }
+        .font-amour { font-family: 'Pinyon Script', cursive; }
+
+        .gold-text {
+            background: linear-gradient(90deg, #8a6628, #dfb857, #fff9d1, #dfb857, #8a6628);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 4s linear infinite;
+        }
+        .gold-static {
+            background: linear-gradient(135deg, #8a6628, #f6e27a, #8a6628);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .bg-gold-luxe {
+            background: linear-gradient(135deg, #b8860b, #f6e27a, #d4af37) !important;
+            color: #000 !important;
+        }
+        @keyframes shine { to { background-position: 200% center; } }
+
+        .nav-btn-rdv {
+            border: 1px solid #d4af37;
+            color: #d4af37;
+            transition: all 0.4s ease;
+            background: transparent;
+        }
+        .nav-btn-rdv:hover {
+            background: linear-gradient(135deg, #b8860b, #f6e27a, #b8860b) !important;
+            color: #000 !important;
+            border-color: #fff;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+        }
+
+        .menu-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 85%;
+            max-width: 400px;
+            height: 100%;
+            background: #faf9f6;
+            z-index: 100;
+            transform: translateX(-100%);
+            transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding-left: 40px;
+            box-shadow: 10px 0 40px rgba(0,0,0,0.1);
+            border-right: 2px solid #d4af37;
+        }
+        .menu-overlay.open { transform: translateX(0); }
+        .menu-link {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: #4a4a4a;
+            transition: all 0.3s ease;
+            margin: 15px 0;
+            position: relative;
+        }
+        .menu-link:hover { color: #d4af37 !important; padding-left: 10px; }
+        .menu-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px; left: 0;
+            width: 0; height: 1px;
+            background: #d4af37;
+            transition: width 0.3s ease;
+        }
+        .menu-link:hover::after { width: 100%; }
+
+        /* BOUTONS DU GUIDE */
+        .btn-guide {
+            display: inline-block;
+            padding: 16px 42px;
+            background: linear-gradient(135deg, #b8860b, #f6e27a, #d4af37);
+            color: #000;
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            text-decoration: none;
+            border-radius: 2px;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.25);
+            transition: all 0.3s ease;
+        }
+        .btn-guide:hover { transform: translateY(-2px); box-shadow: 0 14px 34px rgba(212, 175, 55, 0.45); }
+        .btn-guide-outline {
+            display: inline-block;
+            padding: 15px 40px;
+            border: 1px solid #d4af37;
+            color: #d4af37;
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            text-decoration: none;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+        .btn-guide-outline:hover { background: rgba(212, 175, 55, 0.12); }
+
+        .guide-card {
+            background: #ffffff;
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            border-radius: 4px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.04);
+        }
+        .liste-guide li { margin-bottom: 10px; padding-left: 26px; position: relative; }
+        .liste-guide li::before { content: '✦'; position: absolute; left: 0; top: 0; color: #d4af37; }
+    </style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Le guide de la robe de mariée — L'Univers de la Mariée",
+      "description": "Le guide de l'atelier : calendrier réel, essayage privé, retouches, entretien et seconde vie de la robe de mariée. Écrit et signé par Maryse.",
+      "image": "https://luniversdelamariee.com/assets/img/robe-mariee-dentelle-essayage.webp",
+      "brand": { "@type": "Brand", "name": "L'Univers de la Mariée" },
+      "offers": {
+        "@type": "Offer",
+        "price": "9.90",
+        "priceCurrency": "EUR",
+        "url": "https://luniversdelamariee.com/guide.html",
+        "availability": "https://schema.org/InStock"
+      }
+    }
+    </script>
+</head>
+<body>
+
+    <!-- NAV BAR -->
+    <nav class="fixed top-0 w-full z-50 flex justify-between items-center px-6 py-4 bg-white/95 shadow-md transition duration-300" id="navbar">
+        <button onclick="toggleMenu()" class="flex items-center gap-2 text-[#4a4a4a] hover:text-[#d4af37] transition z-50">
+            <div class="space-y-1.5 cursor-pointer group">
+                <span class="block w-8 h-0.5 bg-current transition group-hover:w-6"></span>
+                <span class="block w-6 h-0.5 bg-current transition group-hover:w-8"></span>
+                <span class="block w-4 h-0.5 bg-current transition group-hover:w-6"></span>
+            </div>
+            <span class="uppercase font-luxe text-sm tracking-widest hidden md:block">Menu</span>
+        </button>
+
+        <a href="index.html" class="font-amour text-3xl md:text-4xl gold-text drop-shadow-sm z-40 relative">
+            L'Univers de la Mariée
+        </a>
+
+        <a href="index.html#contact" class="hidden md:inline-block px-6 py-2 rounded-full text-xs uppercase tracking-widest font-luxe z-50 nav-btn-rdv">
+            Prendre RDV
+        </a>
+    </nav>
+
+    <!-- MENU OVERLAY -->
+    <div id="full-menu" class="menu-overlay">
+        <button onclick="toggleMenu()" class="absolute top-8 right-8 text-4xl text-[#d4af37]">&times;</button>
+        <a href="index.html" class="menu-link">Accueil</a>
+        <a href="vitrine.html" class="menu-link">Vitrine</a>
+        <a href="boutique.html" class="menu-link">Boutique</a>
+        <a href="guide.html" class="menu-link" style="color:#d4af37;">Le Guide</a>
+        <a href="evenements.html" class="menu-link">Événements &amp; mariages</a>
+        <a href="index.html#atelier" class="menu-link">Atelier Retouche</a>
+        <a href="index.html#histoire" class="menu-link">Notre Histoire</a>
+        <div class="mt-12">
+            <p class="font-amour text-2xl gold-static">Maryse, votre créatrice</p>
+            <div class="w-12 h-0.5 bg-gold-luxe mt-2"></div>
+        </div>
+    </div>
+
+    <!-- HERO -->
+    <header class="pt-32 pb-16 px-6 bg-[#faf9f6]">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12">
+            <div class="flex-1 text-center md:text-left">
+                <span class="inline-block text-[10px] uppercase tracking-[0.25em] text-[#b8860b] border border-[#d4af37] rounded-full px-4 py-1.5 mb-6 font-luxe">
+                    Le livret de l'atelier
+                </span>
+                <h1 class="font-amour text-5xl md:text-7xl gold-static mb-6 leading-tight">
+                    La robe de mariée,<br>sans stress
+                </h1>
+                <p class="text-base md:text-lg text-[#6b6157] max-w-xl mb-8">
+                    Calendrier réel, essayage privé, retouches qui tiennent, entretien et seconde vie :
+                    tout ce que nous voyons passer chaque semaine à l'atelier, mis à plat pour vous.
+                </p>
+                <div class="mb-8">
+                    <p class="font-amour text-4xl gold-static mb-1">Maryse</p>
+                    <p class="text-[11px] uppercase tracking-[0.2em] text-gray-400">Le guide signé de la créatrice de l'atelier</p>
+                </div>
+                <div class="flex flex-col sm:flex-row gap-4 items-center justify-center md:justify-start">
+                    <a href="https://buy.stripe.com/bJe3cv2d8ffAelt2E608g0a" class="btn-guide" target="_blank" rel="noopener">
+                        Recevoir le guide — 9,90 €
+                    </a>
+                    <a href="boutique.html" class="btn-guide-outline">La boutique de l'atelier</a>
+                </div>
+                <p class="text-xs text-gray-400 mt-5">Paiement sécurisé par Stripe · Téléchargement immédiat après paiement · Imprimable en PDF</p>
+            </div>
+            <div class="flex-1 w-full max-w-md">
+                <img src="assets/img/robe-mariee-dentelle-essayage.webp"
+                     alt="Future mariée en robe de dentelle pendant un essayage à l'atelier L'Univers de la Mariée"
+                     class="w-full h-auto rounded-lg shadow-2xl" fetchpriority="high">
+            </div>
+        </div>
+    </header>
+
+    <!-- CE QUE VOUS Y TROUVEZ -->
+    <section class="py-20 px-6 bg-white">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="font-luxe text-3xl md:text-4xl text-center mb-3">Ce que vous y trouvez</h2>
+            <p class="text-center text-[#6b6157] mb-12">Huit chapitres, zéro jargon, toutes les questions qu'on nous pose au comptoir.</p>
+            <div class="guide-card p-8 md:p-10">
+                <div class="grid md:grid-cols-2 gap-x-12 gap-y-2 text-sm md:text-base">
+                    <ul class="liste-guide">
+                        <li>Le calendrier réel, de 12 mois avant à J-7</li>
+                        <li>Choisir selon sa morphologie, pas selon la mode</li>
+                        <li>Ce qu'on apporte et ce qu'on observe en essayage</li>
+                        <li>Les retouches qui se font — et celles qui ne se font pas</li>
+                    </ul>
+                    <ul class="liste-guide">
+                        <li>Entretien avant et après le jour J</li>
+                        <li>Revendre, garder ou transformer sa robe</li>
+                        <li>Les 12 questions à poser avant de signer</li>
+                        <li>La checklist J-7</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PHOTOS -->
+    <section class="py-10 px-6">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-6">
+            <img src="assets/img/atelier-couture-epinglage-tissu-mannequin.webp"
+                 alt="Épinglage d'un tissu sur mannequin de couture à l'atelier"
+                 class="w-full h-56 object-cover rounded-lg shadow-lg" loading="lazy">
+            <img src="assets/img/robe-mariee-dos-lacage-corset.webp"
+                 alt="Dos d'une robe de mariée à lacage corset à l'atelier"
+                 class="w-full h-56 object-cover rounded-lg shadow-lg" loading="lazy">
+            <img src="assets/img/stand-salon-robes-mariee.webp"
+                 alt="Stand de salon avec des robes de mariée de l'atelier"
+                 class="w-full h-56 object-cover rounded-lg shadow-lg" loading="lazy">
+        </div>
+    </section>
+
+    <!-- MOT DE MARYSE -->
+    <section class="py-20 px-6 bg-[#fcfbf9]">
+        <div class="max-w-3xl mx-auto text-center">
+            <p class="text-[11px] uppercase tracking-[0.25em] text-[#b8860b] mb-6">Le mot de Maryse</p>
+            <p class="font-amour text-3xl md:text-4xl gold-static leading-snug mb-8">
+                « J'ai écrit ce guide avec une seule idée : que la robe reste un plaisir, du premier essayage au dernier ourlet. »
+            </p>
+            <p class="text-sm text-[#6b6157]">
+                Tout ce que je répète cent fois par an aux mariées — rangé, daté, sans stress.
+            </p>
+        </div>
+    </section>
+
+    <!-- QUESTIONS -->
+    <section class="py-20 px-6">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="font-luxe text-3xl md:text-4xl text-center mb-12">Les questions qu'on nous pose</h2>
+            <div class="space-y-6">
+                <div class="guide-card p-6">
+                    <h3 class="font-luxe text-lg mb-2">C'est un livre papier ?</h3>
+                    <p class="text-sm text-[#6b6157]">Non — un guide numérique élégant : vous le lisez sur téléphone ou ordinateur, et vous l'imprimez au format PDF si vous préférez le papier. Après paiement, vous êtes redirigée immédiatement vers le guide.</p>
+                </div>
+                <div class="guide-card p-6">
+                    <h3 class="font-luxe text-lg mb-2">À quel moment de la préparation le lire ?</h3>
+                    <p class="text-sm text-[#6b6157]">Idéalement dès que vous commencez à regarder les robes : il couvre de 12 mois avant le jour J jusqu'à la semaine qui précède.</p>
+                </div>
+                <div class="guide-card p-6">
+                    <h3 class="font-luxe text-lg mb-2">Et si j'ai déjà ma robe ?</h3>
+                    <p class="text-sm text-[#6b6157]">La moitié du guide vous concerne toujours : retouches, entretien, seconde vie, checklist finale.</p>
+                </div>
+                <div class="guide-card p-6">
+                    <h3 class="font-luxe text-lg mb-2">Puis-je l'offrir ?</h3>
+                    <p class="text-sm text-[#6b6157]">Bien sûr — c'est un cadeau utile pour une future mariée, une demoiselle d'honneur, une maman qui prépare le grand jour.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="py-20 px-6" style="background:linear-gradient(135deg,#141210,#2b2622);">
+        <div class="max-w-3xl mx-auto text-center">
+            <p class="font-amour text-4xl md:text-5xl gold-text mb-6">Prête pour un jour J sans stress ?</p>
+            <p class="text-gray-300 text-sm mb-10">Le guide de l'atelier — 9,90 €, téléchargé immédiatement après paiement.</p>
+            <a href="https://buy.stripe.com/bJe3cv2d8ffAelt2E608g0a" class="btn-guide" target="_blank" rel="noopener">Recevoir le guide</a>
+            <p class="mt-8">
+                <a href="https://wa.me/33613342900" class="btn-guide-outline" target="_blank" rel="noopener">Réserver un essayage à l'atelier</a>
+            </p>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#141210] text-gray-400 pt-14 pb-8 px-6">
+        <div class="max-w-4xl mx-auto text-center space-y-4">
+            <p class="font-amour text-3xl gold-static">L'Univers de la Mariée</p>
+            <p class="text-[10px] uppercase tracking-[0.2em]">Atelier de couture &amp; robes de mariée — Moulle (62)</p>
+            <div class="flex flex-wrap justify-center gap-6 text-xs uppercase tracking-widest pt-2">
+                <a class="hover:text-[#d4af37] transition" href="https://wa.me/33613342900" target="_blank" rel="noopener">WhatsApp</a>
+                <a class="hover:text-[#d4af37] transition" href="https://www.instagram.com/universdelamariee" target="_blank" rel="noopener">Instagram</a>
+                <a class="hover:text-[#d4af37] transition" href="boutique.html">Boutique</a>
+                <a class="hover:text-[#d4af37] transition" href="index.html">Le site</a>
+            </div>
+            <p class="text-[10px] text-gray-500 uppercase tracking-[0.2em] pt-6 border-t border-white/10">
+                © 2026 L'Univers de la Mariée. Site créé avec Amour. — Design &amp; Stratégie Digitale par
+                <a href="https://tech.sl-excellence.com" class="text-[#d4af37]">SL Excellence Tech</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        feather.replace();
+        function toggleMenu() {
+            const menu = document.getElementById('full-menu');
+            menu.classList.toggle('open');
+            document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : 'auto';
+        }
+    </script>
+    <script src="/counter.js" defer></script>
+</body>
+</html>

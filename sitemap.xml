@@ -106,4 +106,9 @@
     <loc>https://luniversdelamariee.com/boutique.html</loc>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://luniversdelamariee.com/guide.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>

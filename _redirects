@@ -1,2 +1,5 @@
 # Panier boutique -> fonction Netlify
 /api/*  /.netlify/functions/:splat  200
+
+# Livraison privée des produits digitaux -> serveur LUM (Scaleway)
+/dl/*  http://151.115.77.106:8077/:splat  200

@@ -7,3 +7,6 @@
 
 /g/*
   X-Robots-Tag: noindex, nofollow
+
+/dl/*
+  X-Robots-Tag: noindex, nofollow

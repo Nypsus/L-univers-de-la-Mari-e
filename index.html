@@ -479,6 +479,7 @@
         <button onclick="toggleMenu()" class="absolute top-8 right-8 text-4xl text-[#d4af37]">&times;</button>
         <a href="vitrine.html" class="menu-link">Vitrine</a>
         <a href="boutique.html" class="menu-link">Boutique</a>
+        <a href="guide.html" class="menu-link">Le Guide</a>
         <a href="#atelier" onclick="toggleMenu()" class="menu-link">Atelier Retouche</a>
         <a href="#histoire" onclick="toggleMenu()" class="menu-link">Notre Histoire</a>
         
@@ -534,6 +535,22 @@
             <i data-feather="chevron-down"></i>
         </div>
     </header>
+
+    <!-- BANDEAU GUIDE -->
+    <style>
+        .guide-strip { display:flex; flex-direction:column; align-items:center; gap:4px; text-align:center; text-decoration:none;
+            background:linear-gradient(135deg,#141210,#2b2622); padding:24px 18px;
+            border-top:1px solid rgba(212,175,55,.45); border-bottom:1px solid rgba(212,175,55,.45); transition:all .4s ease; }
+        .guide-strip:hover { background:linear-gradient(135deg,#2b2622,#141210); }
+        .guide-strip .gs-title { font-family:'Pinyon Script',cursive; font-size:2rem; line-height:1.1;
+            background:linear-gradient(135deg,#8a6628,#f6e27a,#8a6628); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+        .guide-strip .gs-text { font-family:'Montserrat',sans-serif; font-size:.72rem; letter-spacing:.16em; text-transform:uppercase; color:#d9c79b; }
+        @media (min-width:768px) { .guide-strip .gs-title { font-size:2.6rem; } }
+    </style>
+    <a href="guide.html" class="guide-strip">
+        <span class="gs-title">Le guide de la robe de mariée</span>
+        <span class="gs-text">Calendrier · essayage · retouches · entretien — signé Maryse — 9,90 € →</span>
+    </a>
 
     <!-- À placer entre la Section Histoire et la Section Services par exemple -->
 

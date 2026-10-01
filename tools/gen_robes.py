@@ -110,6 +110,7 @@ NAV_TPL = u"""    <!-- NAV (identique au site principal) -->
         <a href="index.html" class="menu-link">Accueil</a>
         <a href="vitrine.html" class="menu-link">Vitrine</a>
         <a href="boutique.html" class="menu-link">Boutique</a>
+        <a href="guide.html" class="menu-link">Le Guide</a>
         <a href="evenements.html" class="menu-link">\u00c9v\u00e9nements &amp; mariages</a>
         <a href="index.html#atelier" class="menu-link">Atelier Retouche</a>
         <a href="index.html#histoire" class="menu-link">Notre Histoire</a>
@@ -128,7 +129,7 @@ NAV_TPL = u"""    <!-- NAV (identique au site principal) -->
     </script>
 
 """
-nav = NAV_TPL.replace('href="index.html', 'href="../index.html').replace('href="vitrine.html', 'href="../vitrine.html').replace('href="boutique.html', 'href="../boutique.html').replace('href="evenements.html', 'href="../evenements.html')
+nav = NAV_TPL.replace('href="index.html', 'href="../index.html').replace('href="vitrine.html', 'href="../vitrine.html').replace('href="boutique.html', 'href="../boutique.html').replace('href="evenements.html', 'href="../evenements.html').replace('href="guide.html', 'href="../guide.html')
 
 # --- 3. Slugs uniques ---
 slugs = {}
